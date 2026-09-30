@@ -110,3 +110,44 @@ def seed_ranks(scored: pd.DataFrame, seeds: list[dict]) -> list[dict]:
             }
         )
     return out
+
+
+NETWORK_FACTORS = ("seats", "offices", "scale", "hybrid_depth")
+NETWORK_COLUMNS = {
+    "seats": "seats",
+    "offices": "offices",
+    "scale": "raum",
+    "hybrid_depth": "hybrid_depth",
+}
+
+
+def collapse_network(scored: pd.DataFrame, cfg: dict, top_n: int = 50) -> dict:
+    """Robustness check for correlated size inputs.
+
+    seats, offices, scale and hybrid depth are related measures of network size. Merge them into
+    one factor worth their combined points (the mean of their unit scores) and count how many of
+    the baseline top_n survive. Also report the Spearman correlations between the raw inputs.
+    """
+    pts = {f["id"]: f["points"] for f in cfg["factors"]}
+    net = [f for f in NETWORK_FACTORS if f in pts]
+    total_net = sum(pts[f] for f in net)
+    unit = sum(scored[f"pts_{f}"] / pts[f] for f in net) / len(net)
+    other = sum(scored[f"pts_{f}"] for f in pts if f not in net)
+    collapsed = other + unit * total_net
+    base = set(scored.head(top_n)["crd"])
+    new_top = scored.assign(_collapsed=collapsed).sort_values("_collapsed", ascending=False)
+    kept = len(base & set(new_top.head(top_n)["crd"]))
+    cols = [NETWORK_COLUMNS[f] for f in net]
+    corr = scored[cols].corr(method="spearman")
+    spearman = {
+        f"{a}~{b}": round(float(corr.loc[NETWORK_COLUMNS[a], NETWORK_COLUMNS[b]]), 2)
+        for i, a in enumerate(net)
+        for b in net[i + 1 :]
+    }
+    return {
+        "network_factors": net,
+        "network_points": total_net,
+        "top_n": top_n,
+        "top_n_kept_when_collapsed": kept,
+        "spearman": spearman,
+    }

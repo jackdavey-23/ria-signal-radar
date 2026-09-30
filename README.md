@@ -55,6 +55,8 @@ In RevOps terms this is a **fit score** built from explicit attributes in public
 | `scale` | 10 | 5F(2)(c) total RAUM; log ramp $250M → $5B, flat above | Platform minimums. A log ramp, not a bell: two seeds are $8.8B and $12.9B. | median $1.59B (p25 $0.65B, p75 $4.20B) |
 | `hnw_mix` | 10 | 5D(b)(3) HNW RAUM ÷ 5F(2)(c); linear 0.20 → 0.60 | Eligible clients. Form ADV 'high net worth' is the rule 205-3 qualified-client test, a lower bar than qualified purchaser, so this never claims accredited/QP eligibility. | median 56% (p25 41%, p75 71%) |
 
+**Correlated inputs.** `seats`, `offices`, `scale` and `hybrid_depth` are related measures of one thing, network size, and together carry 50 of 100 points. That is deliberate (the vendor's own KPI is advisor seats), and it means the score is size-heavy rather than eight independent signals. Spearman correlations in the universe: seats~offices 0.85, seats~RAUM 0.63, offices~RAUM 0.47, hybrid depth~seats 0.25. Collapsing the four into a single 50-point factor keeps 49 of the top 50 (`run_log.json["robustness"]`).
+
 ## What the data killed
 
 Factors from the first draft, cut because they were constants or the wrong construct (computed 2026-09-29 on that draft's 4,258-firm universe):
@@ -72,7 +74,7 @@ The vendor's four public advisory customers all pass the gates and rank Arkadios
 
 ## Sensitivity
 
-Each weight moved ±5 points; how many of the baseline top 50 stay in the top 50. This replaces weight sliders.
+Each weight moved ±5 points; how many of the baseline top 50 stay in the top 50. This replaces weight sliders. It measures ranking stability, not accuracy: a stable top 50 says the model is not fragile, not that those firms are more likely to buy. The only outcome data this project can obtain is the buyer's verdict column.
 
 | Factor | Δ points | Top 50 kept |
 |---|---|---|

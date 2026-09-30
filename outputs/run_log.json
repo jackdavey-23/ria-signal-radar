@@ -211,5 +211,25 @@
     "input_tokens": 21988,
     "output_tokens": 4822,
     "cost_usd": 0.0461
+  },
+  "robustness": {
+    "network_factors": [
+      "seats",
+      "offices",
+      "scale",
+      "hybrid_depth"
+    ],
+    "network_points": 50,
+    "top_n": 50,
+    "top_n_kept_when_collapsed": 49,
+    "spearman": {
+      "seats~offices": 0.85,
+      "seats~scale": 0.63,
+      "seats~hybrid_depth": 0.25,
+      "offices~scale": 0.47,
+      "offices~hybrid_depth": 0.25,
+      "scale~hybrid_depth": -0.15
+    },
+    "computed_at": "2026-09-30, same config hash and input files as this run"
   }
 }

@@ -18,7 +18,7 @@ from radar.gates import apply_gates
 from radar.ingest import join_years, load_fields, load_registered
 from radar.report import render_report
 from radar.runlog import config_hash, run_id, write_run_log
-from radar.score import score, seed_ranks, sensitivity
+from radar.score import collapse_network, score, seed_ranks, sensitivity
 from radar.signals import derive
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -87,6 +87,7 @@ def run(args: argparse.Namespace) -> dict:
     rid = run_id()
     seeds = seed_ranks(scored, cfg["seeds"])
     sens = sensitivity(scored, cfg) if args.sensitivity else []
+    robustness = collapse_network(scored, cfg) if args.sensitivity else None
     final, suppressed = apply_suppression(scored, suppression)
     paths = write_outputs(final, suppressed, cfg["flags"], args.out, rid)
     log = {
@@ -108,6 +109,7 @@ def run(args: argparse.Namespace) -> dict:
         "seed_ranks": seeds,
         "base_rates": base_rates(kept, cfg),
         "sensitivity": sens,
+        "robustness": robustness,
         "suppressed": [
             {"crd": int(c), "name": n}
             for c, n in zip(suppressed["crd"], suppressed["name"], strict=True)

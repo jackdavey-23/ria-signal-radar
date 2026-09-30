@@ -70,3 +70,13 @@ def test_alts_direction_gap_flips_alts_points():
     a = active.set_index("crd")["pts_alts_pooled"]
     g = gap.set_index("crd")["pts_alts_pooled"].reindex(a.index)
     assert ((a > 0) == (g == 0)).all()
+
+
+def test_collapse_network_reports_overlap_and_correlations():
+    from radar.score import collapse_network
+
+    s = _scored()
+    r = collapse_network(s, CFG, top_n=10)
+    assert r["network_points"] == 50 and 0 <= r["top_n_kept_when_collapsed"] <= 10
+    assert set(r["network_factors"]) == {"seats", "offices", "scale", "hybrid_depth"}
+    assert all(-1 <= v <= 1 for v in r["spearman"].values())
