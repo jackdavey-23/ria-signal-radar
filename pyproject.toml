@@ -23,6 +23,9 @@ target-version = "py312"
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM", "N", "W"]
 
+[tool.ruff.lint.per-file-ignores]
+"src/radar/report.py" = ["E501"]  # inline HTML/CSS template strings
+
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 testpaths = ["tests"]

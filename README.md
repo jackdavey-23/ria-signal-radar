@@ -120,9 +120,38 @@ Contact waterfall (Clay or similar) for named decision-makers, reply-rate testin
 
 Public SEC data only, at the firm level. Requests to sec.gov declare a User-Agent and stay under 10 per second. No IAPD brochure crawling, no BrokerCheck, no LinkedIn. Contacts in any export are placeholders. Keys live in `.env`; `data/` and the full scored universe are gitignored.
 
+## Second preset: asset-manager distribution
+
+Same engine, different buyer. [`config/icp_am_distribution.yaml`](config/icp_am_distribution.yaml) asks which RIAs an asset manager's RIA-channel wholesaler should call first: $250M–$5B, HNW-heavy, and already selecting outside managers (5G(7)). Run `20260930T053209-645da65`: funnel 17,149 → 14,863 → 8,248 → 6,887 → 3,409 → 3,377 → 1,740; tiers A 37 · B 187 · C 1516 (1740 firms). No public customer list exists for this buyer, so no sanity-check claim is made for it.
+
+| Gate | Rule |
+|---|---|
+| `us` | Main office in the United States |
+| `size` | 5F(2)(c) regulatory assets under management between $250M and $5B (wholesaler territory, below the institutional desk) |
+| `staff` | 5A employees >= 5 |
+| `wealth_clients` | 5D(b)(1) high net worth clients > 0 and HNW share of RAUM >= 0.40 |
+| `wealth_manager` | Individuals (5D(a)(3) + 5D(b)(3)) >= 50% of RAUM and pooled vehicles 5D(f)(3) < 50% |
+| `uses_outside_managers` | 5G(7) advisory services include selection of other advisers (including private fund managers) |
+
+```bash
+uv run radar run --config config/icp_am_distribution.yaml --out outputs/am_distribution --sensitivity
+```
+
+## Drafts (never sent)
+
+`uv run radar draft` asks Claude Haiku 4.5 for a 70-word opener per top-50 firm using only that firm's row (RAUM, growth, seats, offices, HNW share, signals; never the Item 11 flag). Each draft comes back as JSON with the claims it used, and a validator rejects any draft containing a number that is not a rendering of a number in the firm's row. Results go to `outputs/drafts.json` with `"sent": false` on every row; token usage and cost are written to `run_log.json["usage"]` from the API's own usage counts, never estimated in advance. Drafting needs `ANTHROPIC_API_KEY` in `.env` and is not part of the scoring run; if `drafts.json` is absent, no drafts have been generated for the current run.
+
+## HubSpot export
+
+`outputs/hubspot_companies.csv` follows HubSpot's company-import rule (at least one of Company name or Company domain name). Company name is the identifier. Company domain name is filled only from non-social hosts, because HubSpot dedupes on domain and 34.6% of ADV website values are LinkedIn or Facebook pages; `domain_source` says which rows have one. Custom properties: `crd`, `radar_score`, `radar_tier`, `radar_why`, `radar_run_id`.
+
+## Report page
+
+[jackdavey-23.github.io/ria-signal-radar](https://jackdavey-23.github.io/ria-signal-radar/) is a static page built by `uv run radar report` from `outputs/`: funnel, sortable top 50 with why strings, seed check, sensitivity table, drafts if any, and the second preset. No framework, no key, nothing live.
+
 ## Roadmap
 
-v2: Claude-drafted openers for the top 50 with a validator that rejects any number not in the firm's row (drafts are exported, never sent); a HubSpot company-import CSV; a static report page.
+A monthly diff honestly named "new registrants and rebrands" (RAUM only moves once a year), a DuckDB cross-check of the funnel in SQL, and a Streamlit view if anyone asks for sliders (with the sensitivity table beside them).
 
 ## Author note
 

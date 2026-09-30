@@ -142,9 +142,8 @@ def draft(args: argparse.Namespace) -> None:
     log = json.loads(log_path.read_text())
     log["usage"] = usage
     write_run_log(log_path, log)
-    print(
-        f"{sum(d['valid'] for d in drafts)} of {len(drafts)} drafts validated; cost ${usage['cost_usd']}"
-    )
+    valid = sum(d["valid"] for d in drafts)
+    print(f"{valid} of {len(drafts)} drafts validated; cost ${usage['cost_usd']}")
 
 
 def report(args: argparse.Namespace) -> None:

@@ -23,7 +23,10 @@ ROW = pd.Series(
 
 
 def test_validator_accepts_numbers_rendered_from_the_row():
-    text = "Your firm reports $8.8B in RAUM, up 128% since the prior filing, with 151 advisors across 104 offices."
+    text = (
+        "Your firm reports $8.8B in RAUM, up 128% since the prior filing, "
+        "with 151 advisors across 104 offices."
+    )
     assert numbers_not_in_row(text, ROW) == []
 
 

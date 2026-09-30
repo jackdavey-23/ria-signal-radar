@@ -32,10 +32,10 @@ NEVER_MENTION = {"item11"}
 
 SYSTEM = (
     "You draft one short, plain cold-email opener (at most 70 words) from a wealth-technology "
-    "vendor's outreach associate to a registered investment adviser, using only the facts provided. "
-    "Never mention regulatory or disciplinary disclosures, never invent or round a number beyond what "
-    "is given, never name the vendor, no flattery. Return JSON with the opener and the list of factual "
-    "claims you used, each claim quoting the figure exactly as given."
+    "vendor's outreach associate to a registered investment adviser, using only the facts "
+    "provided. Never mention regulatory or disciplinary disclosures, never invent or round a "
+    "number beyond what is given, never name the vendor, no flattery. Return JSON with the "
+    "opener and the list of factual claims you used, each claim quoting the figure exactly as given."
 )
 SCHEMA = {
     "type": "object",

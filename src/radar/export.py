@@ -122,16 +122,18 @@ def write_hubspot(scored: pd.DataFrame, out_dir: Path, run_id: str, n: int = 50)
         {
             "Company name": d["name"],
             "Company domain name": domains.fillna(""),
-            "City": d["city"] if "city" in d else "",
-            "State/Region": d["state"] if "state" in d else "",
-            "Country/Region": d["country"] if "country" in d else "United States",
+            "City": d.get("city", ""),
+            "State/Region": d.get("state", ""),
+            "Country/Region": d.get("country", "United States"),
             "Website URL": website.fillna(""),
             "crd": d["crd"],
             "radar_score": d["score"],
             "radar_tier": d["tier"],
             "radar_why": d["why"],
             "radar_run_id": run_id,
-            "domain_source": domains.map(lambda x: "website" if x else "none"),
+            "domain_source": domains.fillna("")
+            .astype(str)
+            .map(lambda x: "website" if x else "none"),
         }
     )[HUBSPOT_COLUMNS]
     path = Path(out_dir) / "hubspot_companies.csv"
