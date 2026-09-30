@@ -1,0 +1,11 @@
+# Firms removed from any list shown to the modeled vendor, matched by CRD ONLY (never by name
+# substring: "LaSalle St. Investment Advisors" is not "LaSalle Investment Management").
+# Both sides of the vendor's public customer list (wealthmanagement.com, 2026-09-09).
+entries:
+  - {crd: 288863, name: "Arkadios Wealth Advisors", reason: "public advisory customer"}
+  - {crd: 7717, name: "Independent Financial Group", reason: "public advisory customer"}
+  - {crd: 140367, name: "Concorde Asset Management", reason: "public advisory customer (RIA arm of Concorde Investment Services)"}
+  - {crd: 138938, name: "DAI Wealth", reason: "public advisory customer (RIA arm of DAI Securities)"}
+  - {crd: 159296, name: "Cantor Fitzgerald Investment Advisors", reason: "RIA affiliate of a public asset-manager customer"}
+# TODO at v1 export: search the roster for RIA affiliates of LaSalle Investment Management and
+# Inland Real Estate Group by name, confirm each CRD on IAPD, then add them here by CRD.

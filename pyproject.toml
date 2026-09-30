@@ -1,0 +1,27 @@
+[project]
+name = "ria-signal-radar"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "openpyxl>=3.1.5",
+    "pandas>=3.0.6",
+    "pyyaml>=6.0.3",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.16.9",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "N", "W"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q"

@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.DS_Store
+.env
+data/
+*.cache.csv
+outputs/scored_universe.csv
+outputs/drafts_raw/

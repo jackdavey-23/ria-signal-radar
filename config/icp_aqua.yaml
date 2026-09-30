@@ -1,0 +1,102 @@
+# ICP: lookalike of one alternatives platform's four public advisory customers.
+# Not affiliated with that vendor; the profile is inferred from public sources (wealthmanagement.com,
+# 2026-09-09). Weights below were committed BEFORE the first scoring run (see docs/decisions/ADR-002).
+icp: aqua_lookalike
+version: 1
+frozen_on: "2026-09-29"
+
+# active = score firms that already run alts operations (the vendor's customers distribute
+# third-party alternatives). gap = score firms that show none. Both are hypotheses; the README
+# reports whichever ran.
+alts_direction: active
+
+gates:  # applied in order; the count after each gate is logged to outputs/run_log.json
+  - id: us
+    description: "Main office in the United States"
+    expr: "country == 'United States'"
+  - id: bd_linked
+    description: "Broker-dealer linked: 6A(1) is a broker-dealer, 6A(2) is a registered representative, or 7A(1) has a broker-dealer related person"
+    expr: "bd_linked"
+  - id: real_network
+    description: "5B(2) registered representatives of a broker-dealer >= 5"
+    expr: "bd_reps >= 5"
+  - id: size
+    description: "5F(2)(c) regulatory assets under management between $250M and $25B"
+    expr: "raum >= 250e6 and raum <= 25e9"
+  - id: staff
+    description: "5A employees >= 10"
+    expr: "staff >= 10"
+  - id: wealth_clients
+    description: "5D(b)(1) high net worth clients > 0 and HNW share of RAUM (5D(b)(3) / 5F(2)(c)) >= 0.20"
+    expr: "hnw_clients > 0 and hnw_share >= 0.20"
+  - id: wealth_manager
+    description: "Individuals (5D(a)(3) + 5D(b)(3)) >= 50% of RAUM and pooled vehicles 5D(f)(3) < 50%"
+    expr: "individuals_share >= 0.50 and pooled_share < 0.50"
+
+factors:  # points must sum to 100; each row appears verbatim in the README
+  - id: growth
+    points: 20
+    column: growth
+    transform: percentile
+    params: {winsor: [0.05, 0.95], missing: 0.5}
+    hypothesis: "Growing networks onboard advisors and assets onto platforms. Percentile rank strips the market beta that dominates the median (+18.9% in the universe, 2026-09-29). Growth is annual-amendment to annual-amendment, not 'last 12 months'."
+  - id: seats
+    points: 20
+    column: seats
+    transform: log_ramp
+    params: {lo: 10, hi: 300}
+    hypothesis: "The vendor's revenue KPI is advisor seats; one network decision covers hundreds of reps. seats = max(5B(1), 5B(2)). The score rank-correlates with network size by design."
+  - id: offices
+    points: 10
+    column: offices
+    transform: log_ramp
+    params: {lo: 1, hi: 100}
+    hypothesis: "Office count (Item 1.F) makes independent broker-dealer networks visible."
+  - id: hybrid_depth
+    points: 10
+    column: hybrid_depth
+    transform: linear
+    params: {lo: 0.0, hi: 0.8}
+    hypothesis: "Share of staff who are BD reps (5B(2) / 5A) = the alternatives distribution channel."
+  - id: platform_sponsor
+    points: 10
+    column: platform_sponsor
+    transform: flag
+    hypothesis: "Sponsors its own wrap fee program (5I(2)(a) or (c) > 0): one centralized platform decision. 5I(1) alone is too loose (53.5% of the universe)."
+  - id: alts_re_lp
+    points: 5
+    column: alts_re_lp
+    transform: flag
+    hypothesis_flag: true
+    hypothesis: "HYPOTHESIS. Related person is a real estate broker/dealer (7A(14)) or an LP sponsor/syndicator (7A(15)): the DST / non-traded program channel."
+  - id: alts_pooled
+    points: 5
+    column: alts_pooled
+    transform: flag
+    hypothesis_flag: true
+    hypothesis: "HYPOTHESIS. Advises a private fund (7B), related person sponsors pooled vehicles (7A(16)), or 5D(f)(3) > 0: already runs access vehicles by hand. Capped at 5 because two of four seeds score zero."
+  - id: scale
+    points: 10
+    column: raum
+    transform: log_ramp
+    params: {lo: 250e6, hi: 5e9}
+    hypothesis: "Platform minimums. A log ramp, not a bell: two seeds are $8.8B and $12.9B."
+  - id: hnw_mix
+    points: 10
+    column: hnw_share
+    transform: linear
+    params: {lo: 0.20, hi: 0.60}
+    hypothesis: "Eligible clients. Form ADV 'high net worth' is the rule 205-3 qualified-client test, a lower bar than qualified purchaser, so this never claims accredited/QP eligibility."
+
+tiers: {A: 75, B: 60}   # C below 60
+
+# Shown in the why string and exports; never scored, never gated, never in an opener.
+flags: [item11, new_registrant, stale_filing, crossed_500m, crossed_1b, crossed_5b, fund_launched,
+        bank_affiliate, seat_growth, low_discretion, commissions, manager_selection]
+
+# Sanity check only: n = 4 and these firms shaped the gates, so this is not a backtest.
+seeds:
+  - {crd: 288863, name: "Arkadios Wealth Advisors"}
+  - {crd: 7717, name: "Independent Financial Group"}
+  - {crd: 140367, name: "Concorde Asset Management"}
+  - {crd: 138938, name: "DAI Wealth"}
