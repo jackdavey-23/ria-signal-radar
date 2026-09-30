@@ -1,6 +1,7 @@
 # Changelog
 
 ## v2 — 2026-09-30
+- QA: 44 fields across 10 firms (the 4 seed customers + top 6) checked by hand on IAPD on 2026-09-29; all matched the pipeline (`qa_log.md`).
 - Vendor-neutral config name (`icp_alts_platform.yaml`), second preset `icp_am_distribution.yaml` (run `20260930T053209-645da65`: 17,149 → 14,863 → 8,248 → 6,887 → 3,409 → 3,377 → 1,740).
 - `radar draft`: Claude Haiku 4.5 openers with a claims validator; drafts exported, never sent; cost from real usage.
 - `radar report`: static page in `docs/` for GitHub Pages. HubSpot company-import CSV with social-host domain guard.
