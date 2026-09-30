@@ -3,14 +3,20 @@
 from __future__ import annotations
 
 import argparse
+import json
+import os
+import sys
 from datetime import UTC, datetime
 from pathlib import Path
 
+import pandas as pd
 import yaml
 
+from radar.draft import draft_openers
 from radar.export import apply_suppression, write_outputs
 from radar.gates import apply_gates
 from radar.ingest import join_years, load_fields, load_registered
+from radar.report import render_report
 from radar.runlog import config_hash, run_id, write_run_log
 from radar.score import score, seed_ranks, sensitivity
 from radar.signals import derive
@@ -58,6 +64,13 @@ def build_parser() -> argparse.ArgumentParser:
     r.add_argument("--prior", type=Path, default=ROOT / "data/raw/ia09022025.xlsx")
     r.add_argument("--out", type=Path, default=ROOT / "outputs")
     r.add_argument("--sensitivity", action="store_true", help="also run the +/-5 weight table")
+    d = sub.add_parser("draft", help="draft openers for the top firms (needs ANTHROPIC_API_KEY)")
+    d.add_argument("--out", type=Path, default=ROOT / "outputs")
+    d.add_argument("--config", type=Path, default=ROOT / "config" / "icp_alts_platform.yaml")
+    d.add_argument("--n", type=int, default=50)
+    rp = sub.add_parser("report", help="render docs/index.html from outputs/")
+    rp.add_argument("--out", type=Path, default=ROOT / "outputs")
+    rp.add_argument("--html", type=Path, default=ROOT / "docs" / "index.html")
     return p
 
 
@@ -115,10 +128,43 @@ def run(args: argparse.Namespace) -> dict:
     return log
 
 
+def draft(args: argparse.Namespace) -> None:
+    from dotenv import load_dotenv
+
+    load_dotenv(ROOT / ".env")
+    if not os.environ.get("ANTHROPIC_API_KEY"):
+        sys.exit("ANTHROPIC_API_KEY is not set (put it in .env). No drafts were generated.")
+    cfg = yaml.safe_load(args.config.read_text())
+    top = pd.read_csv(args.out / "top50.csv")
+    drafts, usage = draft_openers(top, n=args.n, flags=cfg["flags"])
+    (args.out / "drafts.json").write_text(json.dumps(drafts, indent=2) + "\n")
+    log_path = args.out / "run_log.json"
+    log = json.loads(log_path.read_text())
+    log["usage"] = usage
+    write_run_log(log_path, log)
+    print(
+        f"{sum(d['valid'] for d in drafts)} of {len(drafts)} drafts validated; cost ${usage['cost_usd']}"
+    )
+
+
+def report(args: argparse.Namespace) -> None:
+    log = json.loads((args.out / "run_log.json").read_text())
+    top = pd.read_csv(args.out / "top50.csv")
+    drafts_path = args.out / "drafts.json"
+    drafts = json.loads(drafts_path.read_text()) if drafts_path.exists() else []
+    p2_path = args.out / "am_distribution" / "run_log.json"
+    preset2 = json.loads(p2_path.read_text()) if p2_path.exists() else None
+    print(render_report(log, top, drafts, preset2, args.html))
+
+
 def main(argv: list[str] | None = None) -> None:
     args = build_parser().parse_args(argv)
     if args.cmd == "run":
         run(args)
+    elif args.cmd == "draft":
+        draft(args)
+    elif args.cmd == "report":
+        report(args)
 
 
 if __name__ == "__main__":

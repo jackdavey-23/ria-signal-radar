@@ -89,4 +89,51 @@ def write_outputs(
     s["run_id"] = run_id
     keep = [c for c in ["crd", "name", "score", "tier", "iapd_url", "run_id"] if c in s.columns]
     s[keep].to_csv(paths["suppression"], index=False)
+    paths["hubspot"] = write_hubspot(scored, out_dir, run_id)
     return paths
+
+
+HUBSPOT_COLUMNS = [
+    "Company name",
+    "Company domain name",
+    "City",
+    "State/Region",
+    "Country/Region",
+    "Website URL",
+    "crd",
+    "radar_score",
+    "radar_tier",
+    "radar_why",
+    "radar_run_id",
+    "domain_source",
+]
+
+
+def write_hubspot(scored: pd.DataFrame, out_dir: Path, run_id: str, n: int = 50) -> Path:
+    """HubSpot company import needs Name or Company domain name; name is the identifier here.
+
+    Company domain name is filled only from non-social hosts, because HubSpot dedupes on domain
+    and 34.6% of ADV website values are LinkedIn/Facebook pages.
+    """
+    d = scored.head(n).copy()
+    website = d["website"] if "website" in d else pd.Series("", index=d.index)
+    domains = website.map(domain_from_website)
+    out = pd.DataFrame(
+        {
+            "Company name": d["name"],
+            "Company domain name": domains.fillna(""),
+            "City": d["city"] if "city" in d else "",
+            "State/Region": d["state"] if "state" in d else "",
+            "Country/Region": d["country"] if "country" in d else "United States",
+            "Website URL": website.fillna(""),
+            "crd": d["crd"],
+            "radar_score": d["score"],
+            "radar_tier": d["tier"],
+            "radar_why": d["why"],
+            "radar_run_id": run_id,
+            "domain_source": domains.map(lambda x: "website" if x else "none"),
+        }
+    )[HUBSPOT_COLUMNS]
+    path = Path(out_dir) / "hubspot_companies.csv"
+    out.to_csv(path, index=False)
+    return path

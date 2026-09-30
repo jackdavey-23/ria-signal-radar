@@ -1,6 +1,6 @@
 {
-  "run_id": "20260930T053207-645da65",
-  "generated_at": "2026-09-30T05:32:07+00:00",
+  "run_id": "20260930T053509-db093ee",
+  "generated_at": "2026-09-30T05:35:09+00:00",
   "inputs": [
     {
       "file": "ia09012026-registered.csv",
@@ -179,98 +179,7 @@
       "share_true": 0.76
     }
   },
-  "sensitivity": [
-    {
-      "factor": "growth",
-      "delta": 5,
-      "top_n_kept": 48
-    },
-    {
-      "factor": "growth",
-      "delta": -5,
-      "top_n_kept": 48
-    },
-    {
-      "factor": "seats",
-      "delta": 5,
-      "top_n_kept": 50
-    },
-    {
-      "factor": "seats",
-      "delta": -5,
-      "top_n_kept": 49
-    },
-    {
-      "factor": "offices",
-      "delta": 5,
-      "top_n_kept": 50
-    },
-    {
-      "factor": "offices",
-      "delta": -5,
-      "top_n_kept": 49
-    },
-    {
-      "factor": "hybrid_depth",
-      "delta": 5,
-      "top_n_kept": 50
-    },
-    {
-      "factor": "hybrid_depth",
-      "delta": -5,
-      "top_n_kept": 48
-    },
-    {
-      "factor": "platform_sponsor",
-      "delta": 5,
-      "top_n_kept": 46
-    },
-    {
-      "factor": "platform_sponsor",
-      "delta": -5,
-      "top_n_kept": 49
-    },
-    {
-      "factor": "alts_re_lp",
-      "delta": 5,
-      "top_n_kept": 49
-    },
-    {
-      "factor": "alts_re_lp",
-      "delta": -5,
-      "top_n_kept": 47
-    },
-    {
-      "factor": "alts_pooled",
-      "delta": 5,
-      "top_n_kept": 47
-    },
-    {
-      "factor": "alts_pooled",
-      "delta": -5,
-      "top_n_kept": 45
-    },
-    {
-      "factor": "scale",
-      "delta": 5,
-      "top_n_kept": 50
-    },
-    {
-      "factor": "scale",
-      "delta": -5,
-      "top_n_kept": 49
-    },
-    {
-      "factor": "hnw_mix",
-      "delta": 5,
-      "top_n_kept": 48
-    },
-    {
-      "factor": "hnw_mix",
-      "delta": -5,
-      "top_n_kept": 47
-    }
-  ],
+  "sensitivity": [],
   "suppressed": [
     {
       "crd": 288863,
@@ -294,7 +203,8 @@
     "scored_universe": "outputs/scored_universe.csv",
     "top50": "outputs/top50.csv",
     "top25": "outputs/top25.csv",
-    "suppression": "outputs/suppression.csv"
+    "suppression": "outputs/suppression.csv",
+    "hubspot": "outputs/hubspot_companies.csv"
   },
   "usage": null
 }

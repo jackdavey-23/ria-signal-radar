@@ -71,3 +71,25 @@ def test_demo_mode_is_hard_coded_if_draft_exists():
     src = Path("src/radar/draft.py")
     if src.exists():
         assert "DEMO_MODE = True" in src.read_text()
+
+
+def test_hubspot_export_never_uses_social_domains(tmp_path):
+    from radar.export import write_hubspot
+
+    scored = pd.DataFrame(
+        {
+            "crd": [1, 2],
+            "name": ["A", "B"],
+            "city": ["X", "Y"],
+            "state": ["AZ", "NY"],
+            "country": ["United States"] * 2,
+            "website": ["https://www.linkedin.com/company/a", "https://www.b-wealth.com"],
+            "score": [90.0, 80.0],
+            "tier": ["A", "A"],
+            "why": ["w", "w"],
+        }
+    )
+    out = pd.read_csv(write_hubspot(scored, tmp_path, "run-x"), keep_default_na=False)
+    assert list(out.columns)[:2] == ["Company name", "Company domain name"]
+    assert out["Company domain name"].tolist() == ["", "b-wealth.com"]
+    assert out["domain_source"].tolist() == ["none", "website"]
