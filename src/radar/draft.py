@@ -29,14 +29,30 @@ FACT_COLUMNS = (
     "hybrid_depth",
 )
 NEVER_MENTION = {"item11"}
+# Flags are described in words with no digits, so the validator never has to whitelist them.
+FLAG_PHRASES = {
+    "new_registrant": "new SEC registrant this year",
+    "stale_filing": "latest Form ADV filing is from a prior year",
+    "crossed_500m": "crossed half a billion dollars in AUM between the last two annual filings",
+    "crossed_1b": "crossed one billion dollars in AUM between the last two annual filings",
+    "crossed_5b": "crossed five billion dollars in AUM between the last two annual filings",
+    "fund_launched": "began advising a private fund since the prior filing",
+    "bank_affiliate": "affiliated with a bank or thrift",
+    "seat_growth": "advisor headcount grew by a fifth or more since the prior filing",
+    "low_discretion": "less than half of assets are managed on a discretionary basis",
+    "commissions": "compensated partly by commissions",
+    "manager_selection": "selects outside managers for clients",
+    "bd_linked": "linked to a broker-dealer",
+}
 
 SYSTEM = (
     "You draft one short, plain cold-email opener (at most 70 words) from a wealth-technology "
     "vendor's outreach associate to a registered investment adviser, using only the facts "
-    "provided. Never mention regulatory or disciplinary disclosures, never invent or round a "
-    "number beyond what is given, never name the vendor, no flattery. Return JSON with the "
-    "opener and the list of factual claims you used, each claim quoting the figure exactly "
-    "as given."
+    "provided. No greeting line, no flattery, no filler such as 'significant opportunities' or "
+    "'streamline'. One specific observation from the facts, then one short question. Never "
+    "mention regulatory or disciplinary disclosures, never invent, round or recompute a number "
+    "beyond what is given, never name the vendor. Return JSON with the opener and the list of "
+    "factual claims you used, each claim quoting the figure exactly as given."
 )
 SCHEMA = {
     "type": "object",
@@ -71,6 +87,9 @@ def allowed_numbers(row: pd.Series) -> set[str]:
         v = row.get(col)
         if v is not None and not pd.isna(v):
             out |= _renderings(float(v))
+    offices = row.get("offices")
+    if offices is not None and not pd.isna(offices):
+        out.add(f"{float(offices) + 1:.0f}")  # total locations = principal office + others
     return out
 
 
@@ -95,11 +114,18 @@ def firm_facts(row: pd.Series, flags: list[str]) -> str:
     if not pd.isna(row.get("growth")):
         lines.append(f"Change in AUM versus the prior annual filing: {float(row['growth']):+.0%}")
     lines.append(f"Advisor seats (larger of 5B(1) and 5B(2)): {float(row['seats']):.0f}")
-    lines.append(f"Offices beyond the principal office: {float(row['offices']):.0f}")
+    offices = float(row["offices"])
+    lines.append(
+        f"Locations: {offices + 1:.0f} in total (the principal office plus {offices:.0f} others)"
+    )
     lines.append(f"High-net-worth share of AUM: {float(row['hnw_share']):.0%}")
-    fired = [f for f in flags if f not in NEVER_MENTION and bool(row.get(f, False))]
+    fired = [
+        FLAG_PHRASES.get(f, f)
+        for f in flags
+        if f not in NEVER_MENTION and f in FLAG_PHRASES and bool(row.get(f, False))
+    ]
     if fired:
-        lines.append("Signals: " + ", ".join(fired))
+        lines.append("Signals: " + "; ".join(fired))
     return "\n".join(lines)
 
 

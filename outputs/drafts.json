@@ -1,0 +1,750 @@
+[
+  {
+    "crd": 153184,
+    "name": "STRATOS WEALTH PARTNERS, LTD",
+    "opener": "You're managing $18.6B with 64% from high-net-worth clients across 171 locations. How are you currently evaluating outside manager selection for that base?",
+    "claims_used": [
+      "$18.6B",
+      "64%",
+      "171"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 7995,
+    "name": "AUSDAL FINANCIAL PARTNERS, INC.",
+    "opener": "Ausdal grew AUM 75% to $3.7B while expanding to 112 locations. With 55% of assets from high-net-worth clients and 283 advisor seats, how are you managing increased operational complexity across your distributed model?",
+    "claims_used": [
+      "$3.7B",
+      "+75%",
+      "112 locations",
+      "55%",
+      "283 advisor seats"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 2882,
+    "name": "VOYA FINANCIAL ADVISORS, INC.",
+    "opener": "Your firm managed $3.9B in regulatory assets and grew 41% year-over-year\u2014impressive momentum. With 41% of AUM in high-net-worth clients across 304 locations, how are you currently evaluating your outside manager selection process to keep pace with that growth?",
+    "claims_used": [
+      "$3.9B",
+      "+41%",
+      "41%",
+      "304"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 164484,
+    "name": "TD PRIVATE CLIENT WEALTH LLC",
+    "opener": "TD Private Client Wealth manages $8.6B and grew AUM 33% year-over-year. With 44% from high-net-worth clients and 514 advisor seats across 222 locations, are you evaluating tools to strengthen manager selection workflows?",
+    "claims_used": [
+      "$8.6B",
+      "33%",
+      "44%",
+      "514",
+      "222"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 139627,
+    "name": "INTEGRITY ALLIANCE, LLC",
+    "opener": "Integrity Alliance crossed $5.4B in AUM, up 125% since your last filing. With 322 advisors managing nearly half your assets for high-net-worth clients, how are you evaluating manager selection workflows as you scale?",
+    "claims_used": [
+      "$5.4B",
+      "+125%",
+      "322",
+      "49%"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 142457,
+    "name": "MERIT FINANCIAL ADVISORS",
+    "opener": "Merit Financial's AUM doubled to $23.9B year-over-year while advisor seats grew to 407. With 47% of assets in high-net-worth accounts across 66 locations, how are you managing the operational complexity of that expansion?",
+    "claims_used": [
+      "$23.9B",
+      "+126%",
+      "407",
+      "66",
+      "47%"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 299322,
+    "name": "SUMMIT FINANCIAL, LLC",
+    "opener": "Summit Financial manages $22.5B with 62% from high-net-worth clients, yet operates 216 advisor seats across 108 locations. With your advisor headcount growing 20%+ year-over-year, how are you managing performance reporting across all those outside manager relationships?",
+    "claims_used": [
+      "$22.5B",
+      "62%",
+      "216",
+      "108",
+      "a fifth or more"
+    ],
+    "valid": false,
+    "rejected_numbers": [
+      "20"
+    ],
+    "sent": false
+  },
+  {
+    "crd": 7927,
+    "name": "NORTHERN TRUST SECURITIES, INC",
+    "opener": "Your AUM grew 30% to $1.7B while advisor headcount expanded significantly. With 88% of assets from high-net-worth clients across 30 locations, how are you currently managing the complexity of coordinating external managers at this scale?",
+    "claims_used": [
+      "$1.7B",
+      "+30%",
+      "88%",
+      "30 locations"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 18387,
+    "name": "THRIVENT INVESTMENT MANAGEMENT INC.",
+    "opener": "Your $20.8B in AUM grew 19% last year, yet 3,901 advisors across 1,227 locations suggests significant efficiency potential. How are you approaching advisor productivity optimization?",
+    "claims_used": [
+      "$20.8B",
+      "+19%",
+      "3901",
+      "1227"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 171481,
+    "name": "IHT WEALTH MANAGEMENT LLC",
+    "opener": "IHT Wealth Management's AUM grew 54% to $9.8B, with 59% from high-net-worth clients across 68 locations. Given your reliance on outside manager selection, how do you currently evaluate and monitor those relationships at scale?",
+    "claims_used": [
+      "$9.8B",
+      "+54%",
+      "59%",
+      "68 locations"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 46173,
+    "name": "PARK AVENUE SECURITIES LLC",
+    "opener": "Park Avenue Securities manages $19.6B in assets across 544 locations with 2054 advisor seats, growing 31% year-over-year. With 48% of AUM from high-net-worth clients, how are you currently managing the operational complexity of coordinating outside manager selections at scale?",
+    "claims_used": [
+      "$19.6B",
+      "+31%",
+      "2054",
+      "544",
+      "48%"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 171070,
+    "name": "OSAIC ADVISORY SERVICES, LLC",
+    "opener": "Your firm manages $15.5B and grew AUM 24% year-over-year while maintaining 826 advisor seats across 201 locations. With 57% of assets in high-net-worth accounts, how are you currently evaluating your outside manager selection process at scale?",
+    "claims_used": [
+      "$15.5B",
+      "+24%",
+      "826",
+      "201",
+      "57%"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 10740,
+    "name": "PROSPERA FINANCIAL SERVICES, INC.",
+    "opener": "Prospera Financial Services' AUM grew 27% to $12.4B, yet you operate 140 locations with 220 advisor seats. How are you managing client reporting consistency across that distributed footprint?",
+    "claims_used": [
+      "Regulatory assets under management (Form ADV 5F(2)(c)): $12.4B",
+      "Change in AUM versus the prior annual filing: +27%",
+      "Advisor seats (larger of 5B(1) and 5B(2)): 220",
+      "Locations: 140 in total (the principal office plus 139 others)"
+    ],
+    "valid": false,
+    "rejected_numbers": [
+      "5",
+      "2",
+      "5",
+      "1",
+      "5",
+      "2"
+    ],
+    "sent": false
+  },
+  {
+    "crd": 37031,
+    "name": "PACKERLAND BROKERAGE SERVICES, INC.",
+    "opener": "Packerland crossed $1.4B in AUM with 49% growth and manages assets for high-net-worth clients across 134 locations. How are you currently evaluating outside manager selection against your capacity to scale?",
+    "claims_used": [
+      "Regulatory assets under management (Form ADV 5F(2)(c)): $1.4B",
+      "Change in AUM versus the prior annual filing: +49%",
+      "Locations: 134 in total (the principal office plus 133 others)",
+      "High-net-worth share of AUM: 36%",
+      "selects outside managers for clients"
+    ],
+    "valid": false,
+    "rejected_numbers": [
+      "5",
+      "2"
+    ],
+    "sent": false
+  },
+  {
+    "crd": 155193,
+    "name": "KESTRA PRIVATE WEALTH SERVICES, LLC",
+    "opener": "Your firm managed $13.5B in regulatory assets as of the last filing, up 32% from the prior year. With 68% of AUM in high-net-worth accounts, how are you currently managing the due diligence process for your outside manager selections across your 43 locations?",
+    "claims_used": [
+      "$13.5B",
+      "+32%",
+      "68%",
+      "43 locations"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 168267,
+    "name": "INDEPENDENT ADVISOR ALLIANCE, LLC",
+    "opener": "Independent Advisor Alliance manages $17.2B across 247 advisor seats, with 69% allocated to high-net-worth clients. Given your reliance on outside managers, how do you currently track performance reporting across your selected managers?",
+    "claims_used": [
+      "manages $17.2B",
+      "247 advisor seats",
+      "69% allocated to high-net-worth clients"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 140599,
+    "name": "LARSON FINANCIAL GROUP, LLC",
+    "opener": "Your AUM jumped 36% to $5.5B since last year's filing. With 81% of assets in high-net-worth accounts across 21 locations, how are you managing the complexity of coordinating multiple external managers for these clients?",
+    "claims_used": [
+      "+36%",
+      "$5.5B",
+      "81%",
+      "21"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 8361,
+    "name": "A.G.P / ALLIANCE GLOBAL PARTNERS",
+    "opener": "Alliance Global Partners added $600M+ in AUM this past year, reaching $2.3B. With 42% concentrated in high-net-worth clients across 18 locations, how is your team currently managing outsourced manager selection and monitoring?",
+    "claims_used": [
+      "$2.3B",
+      "+36%",
+      "42%",
+      "18"
+    ],
+    "valid": false,
+    "rejected_numbers": [
+      "600"
+    ],
+    "sent": false
+  },
+  {
+    "crd": 1137,
+    "name": "PRINCIPAL SECURITIES, INC.",
+    "opener": "Principal Securities manages $17.0B in regulatory assets, up 15% year-over-year, across 359 locations with 1464 advisor seats. With 32% of AUM in high-net-worth relationships, how are you managing the operational complexity of overseeing external manager selections at this scale?",
+    "claims_used": [
+      "$17.0B",
+      "+15%",
+      "1464",
+      "359",
+      "32%"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 171976,
+    "name": "WEALTHCARE ADVISORY PARTNERS LLC",
+    "opener": "Your firm grew AUM 38% to $8.3B while maintaining 173 advisor seats across 70 locations. With 64% of assets in high-net-worth clients, how are you managing the operational complexity of external manager selection at scale?",
+    "claims_used": [
+      "$8.3B",
+      "+38%",
+      "173 advisor seats",
+      "70 locations",
+      "64% of assets in high-net-worth clients"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 10111,
+    "name": "PRIMERICA ADVISORS",
+    "opener": "Your AUM grew 39% to $15.5B while maintaining 3975 advisor seats across 1829 locations. How are you managing technology infrastructure scaling at that growth rate?",
+    "claims_used": [
+      "$15.5B",
+      "+39%",
+      "3975",
+      "1829"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 14023,
+    "name": "SYNOVUS SECURITIES, INC.",
+    "opener": "Synovus Securities' AUM grew 19% to $8.4B, with 59% from high-net-worth clients across 65 locations. How are you managing the complexity of selecting outside managers for an expanding client base?",
+    "claims_used": [
+      "$8.4B",
+      "+19%",
+      "59%",
+      "65 locations"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 19585,
+    "name": "HSBC SECURITIES (USA) INC.",
+    "opener": "You're managing $3.8B across 402 advisor seats, with 40% from high-net-worth clients. Given your model of selecting outside managers, how are you currently handling the operational complexity of monitoring those third-party relationships at scale?",
+    "claims_used": [
+      "$3.8B",
+      "402",
+      "40%"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 106743,
+    "name": "CITIZENS PRIVATE WEALTH",
+    "opener": "Citizens Private Wealth manages $16.6B, up 37% since last year, with 94% from high-net-worth clients across 26 locations. As you select outside managers for these clients, how do you currently aggregate reporting across your manager lineup?",
+    "claims_used": [
+      "$16.6B",
+      "+37%",
+      "94%",
+      "26 locations",
+      "selects outside managers for clients"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 44430,
+    "name": "FIRST CITIZENS INVESTOR SERVICES, INC.",
+    "opener": "Your firm manages $2.6B in regulatory assets, with 39% from high-net-worth clients across 112 locations. Given your reliance on outside manager selection, how do you currently evaluate and monitor those partnerships at scale?",
+    "claims_used": [
+      "$2.6B",
+      "39%",
+      "112"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 628,
+    "name": "FIFTH THIRD SECURITIES, INC.",
+    "opener": "Your AUM grew 20% to $10.9B while advisor seats jumped significantly. With 23% from high-net-worth clients across 1118 locations, how are you managing portfolio construction complexity as you scale?",
+    "claims_used": [
+      "$10.9B",
+      "+20%",
+      "23%",
+      "1118"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 108050,
+    "name": "VALMARK ADVISERS, INC.",
+    "opener": "Valmark's AUM grew 21% to $10.2B, with 39% from high-net-worth clients across 157 locations. As you select outside managers for clients, how are you currently evaluating their reporting integration into your advisory workflows?",
+    "claims_used": [
+      "$10.2B",
+      "+21%",
+      "39%",
+      "157 locations",
+      "selects outside managers for clients"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 288792,
+    "name": "KINGSWOOD WEALTH ADVISORS, LLC",
+    "opener": "Your AUM grew 54% to $3.8B since last year, with 55% from high-net-worth clients. As you delegate manager selection across 76 advisors and 44 locations, how are you ensuring consistent due diligence workflows?",
+    "claims_used": [
+      "Regulatory assets under management (Form ADV 5F(2)(c)): $3.8B",
+      "Change in AUM versus the prior annual filing: +54%",
+      "Advisor seats (larger of 5B(1) and 5B(2)): 76",
+      "Locations: 44 in total (the principal office plus 43 others)",
+      "High-net-worth share of AUM: 55%"
+    ],
+    "valid": false,
+    "rejected_numbers": [
+      "5",
+      "2",
+      "5",
+      "5",
+      "2"
+    ],
+    "sent": false
+  },
+  {
+    "crd": 281554,
+    "name": "INTRUA FINANCIAL",
+    "opener": "Intrua Financial's AUM jumped 44% year-over-year to $1.7B, with 54% from high-net-worth clients. As you're selecting outside managers across 27 locations with 38 advisors, what's your current process for monitoring their performance and fees?",
+    "claims_used": [
+      "$1.7B",
+      "+44%",
+      "54%",
+      "27 locations",
+      "38 advisors"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 20999,
+    "name": "CALTON & ASSOCIATES, INC.",
+    "opener": "Calton & Associates grew AUM by 30% to $1.6B while managing 369 advisor seats across 71 locations. With 41% of assets in high-net-worth relationships, how are you currently handling the operational complexity of coordinating your outside manager selections across that scale?",
+    "claims_used": [
+      "grew AUM by 30%",
+      "$1.6B",
+      "369 advisor seats",
+      "71 locations",
+      "41% of assets in high-net-worth relationships"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 283087,
+    "name": "ONESEVEN",
+    "opener": "Your AUM grew 59% to $7.7B between filings, with 56% from high-net-worth clients across 48 locations. As you scale manager selection for these clients, how are you managing due diligence consistency across your advisor seats?",
+    "claims_used": [
+      "$7.7B",
+      "59%",
+      "56%",
+      "48 locations"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 162200,
+    "name": "CAPITAL ANALYSTS",
+    "opener": "Capital Analysts manages $8.8B with 53% from high-net-worth clients across 255 locations. With 667 advisor seats selecting outside managers, how do you currently coordinate manager due diligence across your team?",
+    "claims_used": [
+      "$8.8B",
+      "53%",
+      "255 locations",
+      "667 advisor seats",
+      "selects outside managers for clients"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 167658,
+    "name": "MUTUAL ADVISORS, LLC",
+    "opener": "Your AUM jumped 27% to $8.5B while adding 158 advisor seats across 76 locations. With 71% of assets from high-net-worth clients, how are you managing the complexity of selecting outside managers at scale?",
+    "claims_used": [
+      "Regulatory assets under management (Form ADV 5F(2)(c)): $8.5B",
+      "Change in AUM versus the prior annual filing: +27%",
+      "Advisor seats (larger of 5B(1) and 5B(2)): 158",
+      "Locations: 76 in total (the principal office plus 75 others)",
+      "High-net-worth share of AUM: 71%"
+    ],
+    "valid": false,
+    "rejected_numbers": [
+      "5",
+      "2",
+      "5",
+      "5",
+      "2"
+    ],
+    "sent": false
+  },
+  {
+    "crd": 19258,
+    "name": "HARBOUR INVESTMENTS, INC.",
+    "opener": "Harbour Investments grew AUM by 27% to $9.6B while managing 232 advisor seats across 138 locations. With 27% of assets in high-net-worth relationships, how do you currently coordinate manager selection and performance monitoring across your team?",
+    "claims_used": [
+      "$9.6B",
+      "+27%",
+      "232 advisor seats",
+      "138 locations",
+      "27% of AUM in high-net-worth relationships"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 17530,
+    "name": "BOK FINANCIAL ADVISORS",
+    "opener": "Your AUM crossed $1.1B with 27% growth since last year, and 40% of that serves high-net-worth clients across 115 locations. How are you currently managing the operational complexity of coordinating outside managers for that growing HNW base?",
+    "claims_used": [
+      "$1.1B",
+      "+27%",
+      "40%",
+      "115"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 1588,
+    "name": "DAVENPORT & COMPANY LLC",
+    "opener": "Davenport manages $24.7B with 57% from high-net-worth clients across 30 locations. With 358 advisors selecting outside managers, how are you currently monitoring the performance and alignment of those external partnerships?",
+    "claims_used": [
+      "$24.7B",
+      "57%",
+      "30",
+      "358",
+      "selects outside managers for clients"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 307771,
+    "name": "NEW EDGE WEALTH",
+    "opener": "Your AUM grew 65% to $19.9B, yet you're managing that growth across 99 advisors in 19 locations. How are you ensuring consistent portfolio construction as you scale?",
+    "claims_used": [
+      "$19.9B",
+      "+65%",
+      "99",
+      "19"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 134086,
+    "name": "LEVEL FOUR ADVISORY SERVICES",
+    "opener": "Level Four's AUM jumped 23% to $6.5B while you're managing money for 119 advisors across 71 locations. With nearly half your assets in HNW relationships, how are you currently handling the operational complexity of coordinating all those outside manager selections?",
+    "claims_used": [
+      "$6.5B",
+      "+23%",
+      "119",
+      "71",
+      "49%"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 128545,
+    "name": "CARY STREET PARTNERS",
+    "opener": "Cary Street Partners grew AUM 24% to $10.3B while expanding to 25 locations. With 73% of assets from high-net-worth clients and 85 advisor seats, how are you managing the workflow complexity as you scale your manager selection process?",
+    "claims_used": [
+      "+24%",
+      "$10.3B",
+      "25 locations",
+      "73%",
+      "85 advisor seats"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 44181,
+    "name": "NATIONS FINANCIAL GROUP, INC.",
+    "opener": "Nations Financial Group manages $4.8B with 71% from high-net-worth clients across 40 locations. With your firm selecting outside managers, how are you currently consolidating performance data and fee analysis across those relationships?",
+    "claims_used": [
+      "$4.8B",
+      "71%",
+      "40"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 113074,
+    "name": "ADVISORNET WEALTH PARTNERS",
+    "opener": "Your AUM grew 35% to $3.1B while maintaining 72% in high-net-worth clients across 38 locations. With 68 advisors managing outside manager selections, how are you handling the operational complexity of that growth?",
+    "claims_used": [
+      "$3.1B",
+      "+35%",
+      "72%",
+      "38 locations",
+      "68 advisors"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 125112,
+    "name": "INDEPENDENT FINANCIAL PARTNERS",
+    "opener": "Independent Financial Partners grew AUM 30% to $16.3B while managing 302 advisor seats across 172 locations. With 51% of assets in high-net-worth clients, how are you currently evaluating outside manager selection and consolidation across your platform?",
+    "claims_used": [
+      "$16.3B",
+      "+30%",
+      "302",
+      "172",
+      "51%"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 46047,
+    "name": "HANTZ FINANCIAL SERVICES, INC.",
+    "opener": "Hantz Financial Services has grown AUM 28% to $10.0B while maintaining 353 advisor seats across 21 locations. With 45% of assets in high-net-worth relationships, how are you managing the complexity of coordinating external managers for this segment?",
+    "claims_used": [
+      "$10.0B",
+      "+28%",
+      "353",
+      "21",
+      "45%"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 8733,
+    "name": "LPL ENTERPRISE, LLC",
+    "opener": "You've grown AUM 32% to $24.9B while scaling to 4492 advisor seats across 1141 locations. With 51% of assets from high-net-worth clients, how are you managing the operational complexity of that growth?",
+    "claims_used": [
+      "$24.9B",
+      "+32%",
+      "4492 advisor seats",
+      "1141 locations",
+      "51% of assets from high-net-worth clients"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 3496,
+    "name": "STEPHENS",
+    "opener": "Stephens manages $18.0B with 56% from high-net-worth clients across 21 locations. With AUM up 16% year-over-year, how are you managing the operational complexity of selecting and monitoring outside managers at this scale?",
+    "claims_used": [
+      "$18.0B",
+      "+16%",
+      "56%",
+      "21 locations"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 168012,
+    "name": "IFG ADVISORY, LLC",
+    "opener": "IFG Advisory manages $4.8B with 86 advisors across 63 locations, and 74% of your AUM comes from high-net-worth clients. How are you currently evaluating your outside manager selection process as you've grown 20% year-over-year?",
+    "claims_used": [
+      "$4.8B",
+      "86",
+      "63 locations",
+      "74%",
+      "+20%"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 14455,
+    "name": "U.S. BANCORP ADVISORS, LLC",
+    "opener": "U.S. Bancorp Advisors grew AUM by +18% to $1.8B while expanding to 175 locations. With 32% of assets from high-net-worth clients and 274 advisor seats, how are you managing the complexity of selecting outside managers across this scale?",
+    "claims_used": [
+      "+18%",
+      "$1.8B",
+      "175 locations",
+      "32%",
+      "274 advisor seats"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 28218,
+    "name": "STIFEL INDEPENDENT ADVISORS, LLC",
+    "opener": "You crossed $5.0B in AUM with 14% growth, and 69% is high-net-worth assets. How are you currently evaluating manager selection workflows to handle that scale?",
+    "claims_used": [
+      "$5.0B",
+      "+14%",
+      "69%"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 158819,
+    "name": "CORECAP ADVISORS",
+    "opener": "CoreCap grew AUM 26% to $4.0B while expanding to 41 locations and 110 advisor seats. With 54% of assets in high-net-worth clients, how are you currently managing the operational complexity of coordinating outside managers across that scale?",
+    "claims_used": [
+      "$4.0B",
+      "+26%",
+      "41 locations",
+      "110 advisor seats",
+      "54% high-net-worth"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  },
+  {
+    "crd": 42057,
+    "name": "ARVEST WEALTH MANAGEMENT",
+    "opener": "Arvest Wealth Management grew AUM 22% to $3.4B while maintaining 173 advisor seats across 179 locations. With 38% of assets from high-net-worth clients, how are you currently managing capacity as you scale?",
+    "claims_used": [
+      "$3.4B",
+      "+22%",
+      "173",
+      "179",
+      "38%"
+    ],
+    "valid": true,
+    "rejected_numbers": [],
+    "sent": false
+  }
+]

@@ -206,5 +206,10 @@
     "suppression": "outputs/suppression.csv",
     "hubspot": "outputs/hubspot_companies.csv"
   },
-  "usage": null
+  "usage": {
+    "model": "claude-haiku-4-5",
+    "input_tokens": 22815,
+    "output_tokens": 4842,
+    "cost_usd": 0.047
+  }
 }

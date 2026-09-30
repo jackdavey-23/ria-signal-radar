@@ -30,6 +30,10 @@ def test_validator_accepts_numbers_rendered_from_the_row():
     assert numbers_not_in_row(text, ROW) == []
 
 
+def test_total_locations_counts_as_a_row_number():
+    assert numbers_not_in_row("serving clients from 105 locations", ROW) == []
+
+
 def test_validator_rejects_numbers_not_in_the_row():
     assert numbers_not_in_row("$9.1B over the last 12 months", ROW) == ["9.1", "12"]
     assert claims_in_row(["$8.8B RAUM", "a top 25 list"], ROW) == ["$8.8B RAUM"]
