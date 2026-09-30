@@ -1,6 +1,6 @@
 {
-  "run_id": "20260930T051810-cf0932f",
-  "generated_at": "2026-09-30T05:18:10+00:00",
+  "run_id": "20260930T052002-96162ad",
+  "generated_at": "2026-09-30T05:20:02+00:00",
   "inputs": [
     {
       "file": "ia09012026-registered.csv",
@@ -102,6 +102,83 @@
       "score": 53.1
     }
   ],
+  "base_rates": {
+    "growth": {
+      "p25": 0.11736544086022738,
+      "median": 0.18786505932513986,
+      "p75": 0.27724238621855646
+    },
+    "seats": {
+      "p25": 14.0,
+      "median": 35.0,
+      "p75": 108.0
+    },
+    "offices": {
+      "p25": 1.0,
+      "median": 9.0,
+      "p75": 38.0
+    },
+    "hybrid_depth": {
+      "p25": 0.42857142857142855,
+      "median": 0.7,
+      "p75": 0.9050480769230769
+    },
+    "platform_sponsor": {
+      "share_true": 0.457
+    },
+    "alts_re_lp": {
+      "share_true": 0.095
+    },
+    "alts_pooled": {
+      "share_true": 0.279
+    },
+    "scale": {
+      "p25": 647233353.0,
+      "median": 1591860061.0,
+      "p75": 4201025540.5
+    },
+    "hnw_mix": {
+      "p25": 0.4121758629265855,
+      "median": 0.5607309769602083,
+      "p75": 0.7116544763562881
+    },
+    "item11": {
+      "share_true": 0.312
+    },
+    "new_registrant": {
+      "share_true": 0.008
+    },
+    "stale_filing": {
+      "share_true": 0.033
+    },
+    "crossed_500m": {
+      "share_true": 0.056
+    },
+    "crossed_1b": {
+      "share_true": 0.058
+    },
+    "crossed_5b": {
+      "share_true": 0.045
+    },
+    "fund_launched": {
+      "share_true": 0.014
+    },
+    "bank_affiliate": {
+      "share_true": 0.134
+    },
+    "seat_growth": {
+      "share_true": 0.125
+    },
+    "low_discretion": {
+      "share_true": 0.128
+    },
+    "commissions": {
+      "share_true": 0.123
+    },
+    "manager_selection": {
+      "share_true": 0.76
+    }
+  },
   "sensitivity": [
     {
       "factor": "growth",
