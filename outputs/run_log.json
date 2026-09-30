@@ -208,8 +208,8 @@
   },
   "usage": {
     "model": "claude-haiku-4-5",
-    "input_tokens": 22815,
-    "output_tokens": 4842,
-    "cost_usd": 0.047
+    "input_tokens": 21988,
+    "output_tokens": 4822,
+    "cost_usd": 0.0461
   }
 }

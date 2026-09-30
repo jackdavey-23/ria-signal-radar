@@ -38,7 +38,7 @@ FLAG_PHRASES = {
     "crossed_5b": "crossed five billion dollars in AUM between the last two annual filings",
     "fund_launched": "began advising a private fund since the prior filing",
     "bank_affiliate": "affiliated with a bank or thrift",
-    "seat_growth": "advisor headcount grew by a fifth or more since the prior filing",
+    "seat_growth": "advisor headcount grew meaningfully since the prior filing",
     "low_discretion": "less than half of assets are managed on a discretionary basis",
     "commissions": "compensated partly by commissions",
     "manager_selection": "selects outside managers for clients",
@@ -113,7 +113,7 @@ def firm_facts(row: pd.Series, flags: list[str]) -> str:
     ]
     if not pd.isna(row.get("growth")):
         lines.append(f"Change in AUM versus the prior annual filing: {float(row['growth']):+.0%}")
-    lines.append(f"Advisor seats (larger of 5B(1) and 5B(2)): {float(row['seats']):.0f}")
+    lines.append(f"Advisor seats: {float(row['seats']):.0f}")
     offices = float(row["offices"])
     lines.append(
         f"Locations: {offices + 1:.0f} in total (the principal office plus {offices:.0f} others)"

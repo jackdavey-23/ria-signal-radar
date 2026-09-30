@@ -139,7 +139,7 @@ uv run radar run --config config/icp_am_distribution.yaml --out outputs/am_distr
 
 ## Drafts (never sent)
 
-`uv run radar draft` asks Claude Haiku 4.5 for a 70-word opener per top-50 firm using only that firm's row (RAUM, growth, seats, offices, HNW share, signals; never the Item 11 flag). Each draft comes back as JSON with the claims it used, and a validator rejects any draft containing a number that is not a rendering of a number in the firm's row. Results go to `outputs/drafts.json` with `"sent": false` on every row; token usage and cost are written to `run_log.json["usage"]` from the API's own usage counts, never estimated in advance. Drafting needs `ANTHROPIC_API_KEY` in `.env` and is not part of the scoring run; if `drafts.json` is absent, no drafts have been generated for the current run.
+`uv run radar draft` asks Claude Haiku 4.5 for a 70-word opener per top-50 firm using only that firm's row (RAUM, growth, seats, offices, HNW share, signals; never the Item 11 flag). Each draft comes back as JSON with the claims it used, and a validator rejects any draft containing a number that is not a rendering of a number in the firm's row. Results go to `outputs/drafts.json` with `"sent": false` on every row; token usage and cost are written to `run_log.json["usage"]` from the API's own usage counts, never estimated in advance. Drafting needs `ANTHROPIC_API_KEY` in `.env` and is not part of the scoring run. Latest run `20260930T053624-d64ec98`: 47 of 50 drafts passed the validator at $0.0461 total (21,988 input / 4,822 output tokens, from the API's usage counts). The rejections are the point: the validator catches the model rounding a figure or doing arithmetic the row does not support.
 
 ## HubSpot export
 
