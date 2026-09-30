@@ -51,7 +51,7 @@ def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="radar")
     sub = p.add_subparsers(dest="cmd", required=True)
     r = sub.add_parser("run", help="ingest -> join -> derive -> gates -> score -> export")
-    r.add_argument("--config", type=Path, default=ROOT / "config" / "icp_aqua.yaml")
+    r.add_argument("--config", type=Path, default=ROOT / "config" / "icp_alts_platform.yaml")
     r.add_argument("--fields", type=Path, default=ROOT / "config" / "fields.yaml")
     r.add_argument("--suppression", type=Path, default=ROOT / "config" / "suppression.yaml")
     r.add_argument("--current", type=Path, default=ROOT / "data/raw/ia09012026-registered.csv")

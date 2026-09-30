@@ -76,14 +76,14 @@ def write_outputs(
     paths = {
         "scored_universe": out_dir / "scored_universe.csv",
         "top50": out_dir / "top50.csv",
-        "top25_aqua": out_dir / "top25_aqua.csv",
+        "top25": out_dir / "top25.csv",
         "suppression": out_dir / "suppression.csv",
     }
     d.to_csv(paths["scored_universe"], index=False)
     d[cols].head(50).to_csv(paths["top50"], index=False)
     top25 = d[cols].head(25).copy()
     top25["your_verdict"] = ""  # Yes / No / Already talking, filled in by the reader
-    top25.to_csv(paths["top25_aqua"], index=False)
+    top25.to_csv(paths["top25"], index=False)
     s = suppressed.copy()
     s["iapd_url"] = s["crd"].map(iapd_url) if len(s) else []
     s["run_id"] = run_id

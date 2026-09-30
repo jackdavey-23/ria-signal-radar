@@ -6,7 +6,7 @@ from radar.gates import apply_gates
 from radar.ingest import join_years, load_fields, load_registered
 from radar.signals import derive
 
-CFG = yaml.safe_load(Path("config/icp_aqua.yaml").read_text())
+CFG = yaml.safe_load(Path("config/icp_alts_platform.yaml").read_text())
 
 
 def _universe(fixture_2026, fixture_2025):

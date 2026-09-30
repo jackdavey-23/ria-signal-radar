@@ -47,7 +47,7 @@ def test_write_outputs_shapes(tmp_path):
     suppressed = scored.iloc[:0]
     paths = write_outputs(scored, suppressed, ["item11"], tmp_path, "run-x")
     top50 = pd.read_csv(paths["top50"])
-    top25 = pd.read_csv(paths["top25_aqua"])
+    top25 = pd.read_csv(paths["top25"])
     assert len(top50) == 50 and top50["rank"].tolist() == list(range(1, 51))
     assert len(top25) == 25 and "your_verdict" in top25.columns
     assert (top50["run_id"] == "run-x").all() and top50["iapd_url"].str.contains(

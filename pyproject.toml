@@ -3,8 +3,10 @@ name = "ria-signal-radar"
 version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = [
+    "anthropic>=1.9.0",
     "openpyxl>=3.1.5",
     "pandas>=3.0.6",
+    "python-dotenv>=1.2.3",
     "pyyaml>=6.0.3",
 ]
 

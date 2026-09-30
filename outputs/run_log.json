@@ -1,6 +1,6 @@
 {
-  "run_id": "20260930T052002-96162ad",
-  "generated_at": "2026-09-30T05:20:02+00:00",
+  "run_id": "20260930T053207-645da65",
+  "generated_at": "2026-09-30T05:32:07+00:00",
   "inputs": [
     {
       "file": "ia09012026-registered.csv",
@@ -16,8 +16,8 @@
     }
   ],
   "config": {
-    "path": "config/icp_aqua.yaml",
-    "hash": "d0f4e529eb3d",
+    "path": "config/icp_alts_platform.yaml",
+    "hash": "4d58b197656f",
     "alts_direction": "active"
   },
   "join": {
@@ -293,7 +293,7 @@
   "outputs": {
     "scored_universe": "outputs/scored_universe.csv",
     "top50": "outputs/top50.csv",
-    "top25_aqua": "outputs/top25_aqua.csv",
+    "top25": "outputs/top25.csv",
     "suppression": "outputs/suppression.csv"
   },
   "usage": null

@@ -1,7 +1,7 @@
 # ICP: lookalike of one alternatives platform's four public advisory customers.
 # Not affiliated with that vendor; the profile is inferred from public sources (wealthmanagement.com,
 # 2026-09-09). Weights below were committed BEFORE the first scoring run (see docs/decisions/ADR-002).
-icp: aqua_lookalike
+icp: alts_platform_lookalike
 version: 1
 frozen_on: "2026-09-29"
 

@@ -25,7 +25,7 @@ Universe: **359 firms**. Tiers: A 36 · B 67 · C 256 (A ≥ 75, B ≥ 60).
 
 ## How it works
 
-`ingest` (typed load driven by [`config/fields.yaml`](config/fields.yaml), which quotes the Form ADV wording for every column) → `join_years` → `signals.derive` → `gates` → `score` → `export`. The ICP is data, not code: [`config/icp_aqua.yaml`](config/icp_aqua.yaml) holds the gates, weights, hypotheses and seeds, so a different vendor is a new YAML file. Decisions and their alternatives are in [`docs/decisions/`](docs/decisions/).
+`ingest` (typed load driven by [`config/fields.yaml`](config/fields.yaml), which quotes the Form ADV wording for every column) → `join_years` → `signals.derive` → `gates` → `score` → `export`. The ICP is data, not code: [`config/icp_alts_platform.yaml`](config/icp_alts_platform.yaml) holds the gates, weights, hypotheses and seeds, so a different vendor is a new YAML file. Decisions and their alternatives are in [`docs/decisions/`](docs/decisions/).
 
 ## Gates
 
@@ -101,7 +101,7 @@ Flags appear in the why string and the exports. They are never scored, never gat
 
 - **`item11`** covers the affiliated broker-dealer's regulatory history as well as the adviser's, which is why it is common in a BD-linked universe. Two of the four seed customers carry it. A flag for a human, never a hook.
 - **`bank_affiliate`** (7A(8)) marks captive bank and insurer arms that surface in the top 50; those are enterprise procurement, not a founder-to-founder sale, and are removed by hand from any list a vendor sees.
-- **Suppression** ([`config/suppression.yaml`](config/suppression.yaml)) removes the vendor's public customers and their affiliates by CRD only, never by name substring, before `top25_aqua.csv` is written. Every export row carries the `run_id`.
+- **Suppression** ([`config/suppression.yaml`](config/suppression.yaml)) removes the vendor's public customers and their affiliates by CRD only, never by name substring, before `top25.csv` is written. Every export row carries the `run_id`.
 
 ## Limitations
 

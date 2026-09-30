@@ -1,0 +1,69 @@
+# ICP preset 2: which RIAs should an asset manager's RIA-channel wholesaler call first?
+# Same engine, different buyer. No public customer list exists for this buyer, so `seeds` is empty
+# and the README makes no sanity-check claim for it. Weights frozen on commit (ADR-002).
+icp: am_distribution
+version: 1
+frozen_on: "2026-09-29"
+alts_direction: active
+
+gates:
+  - id: us
+    description: "Main office in the United States"
+    expr: "country == 'United States'"
+  - id: size
+    description: "5F(2)(c) regulatory assets under management between $250M and $5B (wholesaler territory, below the institutional desk)"
+    expr: "raum >= 250.0e6 and raum <= 5.0e9"
+  - id: staff
+    description: "5A employees >= 5"
+    expr: "staff >= 5"
+  - id: wealth_clients
+    description: "5D(b)(1) high net worth clients > 0 and HNW share of RAUM >= 0.40"
+    expr: "hnw_clients > 0 and hnw_share >= 0.40"
+  - id: wealth_manager
+    description: "Individuals (5D(a)(3) + 5D(b)(3)) >= 50% of RAUM and pooled vehicles 5D(f)(3) < 50%"
+    expr: "individuals_share >= 0.50 and pooled_share < 0.50"
+  - id: uses_outside_managers
+    description: "5G(7) advisory services include selection of other advisers (including private fund managers)"
+    expr: "manager_selection"
+
+factors:
+  - id: growth
+    points: 30
+    column: growth
+    transform: percentile
+    params: {winsor: [0.05, 0.95], missing: 0.5}
+    hypothesis: "Net new assets need to be invested somewhere; growing firms take wholesaler meetings. Percentile rank strips market beta; growth is annual-amendment to annual-amendment."
+  - id: hnw_mix
+    points: 20
+    column: hnw_share
+    transform: linear
+    params: {lo: 0.40, hi: 0.90}
+    hypothesis: "Higher HNW share = more room for third-party strategies and vehicles. Form ADV 'high net worth' is the rule 205-3 qualified-client test."
+  - id: scale
+    points: 15
+    column: raum
+    transform: log_ramp
+    params: {lo: 250.0e6, hi: 2.0e9}
+    hypothesis: "Ticket size scales with RAUM up to the point where the firm builds its own research desk."
+  - id: seats
+    points: 15
+    column: seats
+    transform: log_ramp
+    params: {lo: 3, hi: 100}
+    hypothesis: "More advisors = more end-client conversations per wholesaler visit. seats = max(5B(1), 5B(2))."
+  - id: offices
+    points: 10
+    column: offices
+    transform: log_ramp
+    params: {lo: 1, hi: 20}
+    hypothesis: "Multi-office firms centralize model selection; one meeting reaches every office."
+  - id: platform_sponsor
+    points: 10
+    column: platform_sponsor
+    transform: flag
+    hypothesis: "Sponsors its own wrap program (5I(2)(a) or (c) > 0): a centralized model or manager decision."
+
+tiers: {A: 75, B: 60}
+flags: [item11, new_registrant, stale_filing, crossed_500m, crossed_1b, crossed_5b, fund_launched,
+        bank_affiliate, seat_growth, low_discretion, commissions, bd_linked]
+seeds: []

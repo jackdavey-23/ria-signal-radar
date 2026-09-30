@@ -1,0 +1,213 @@
+{
+  "run_id": "20260930T053209-645da65",
+  "generated_at": "2026-09-30T05:32:09+00:00",
+  "inputs": [
+    {
+      "file": "ia09012026-registered.csv",
+      "sha256": "cc3ef47c5368ed7a493ab45effe33dc6a018fb0b1601b8baeba0ce1bb617f0bf",
+      "rows": 17149,
+      "columns": 448
+    },
+    {
+      "file": "ia09022025.xlsx",
+      "sha256": "977d83fdd67acdc464d30d892fe1a839fae2d8d6a47661ecb7ec53bd0e7c312c",
+      "rows": 16359,
+      "columns": 448
+    }
+  ],
+  "config": {
+    "path": "config/icp_am_distribution.yaml",
+    "hash": "c1dd785093e6",
+    "alts_direction": "active"
+  },
+  "join": {
+    "matched": 15456,
+    "new_registrant": 1693
+  },
+  "funnel": [
+    {
+      "gate": "all",
+      "description": "rows in file",
+      "remaining": 17149
+    },
+    {
+      "gate": "us",
+      "description": "Main office in the United States",
+      "remaining": 14863
+    },
+    {
+      "gate": "size",
+      "description": "5F(2)(c) regulatory assets under management between $250M and $5B (wholesaler territory, below the institutional desk)",
+      "remaining": 8248
+    },
+    {
+      "gate": "staff",
+      "description": "5A employees >= 5",
+      "remaining": 6887
+    },
+    {
+      "gate": "wealth_clients",
+      "description": "5D(b)(1) high net worth clients > 0 and HNW share of RAUM >= 0.40",
+      "remaining": 3409
+    },
+    {
+      "gate": "wealth_manager",
+      "description": "Individuals (5D(a)(3) + 5D(b)(3)) >= 50% of RAUM and pooled vehicles 5D(f)(3) < 50%",
+      "remaining": 3377
+    },
+    {
+      "gate": "uses_outside_managers",
+      "description": "5G(7) advisory services include selection of other advisers (including private fund managers)",
+      "remaining": 1740
+    }
+  ],
+  "universe_size": 1740,
+  "tier_counts": {
+    "C": 1516,
+    "B": 187,
+    "A": 37
+  },
+  "seed_ranks": [],
+  "base_rates": {
+    "growth": {
+      "p25": 0.11850241010625878,
+      "median": 0.1778603052996932,
+      "p75": 0.2586481936230349
+    },
+    "hnw_mix": {
+      "p25": 0.6264306511190646,
+      "median": 0.758230294978524,
+      "p75": 0.8719232829309433
+    },
+    "scale": {
+      "p25": 427989080.0,
+      "median": 710065737.5,
+      "p75": 1393410301.75
+    },
+    "seats": {
+      "p25": 5.0,
+      "median": 7.0,
+      "p75": 13.0
+    },
+    "offices": {
+      "p25": 0.0,
+      "median": 1.0,
+      "p75": 3.0
+    },
+    "platform_sponsor": {
+      "share_true": 0.174
+    },
+    "item11": {
+      "share_true": 0.056
+    },
+    "new_registrant": {
+      "share_true": 0.024
+    },
+    "stale_filing": {
+      "share_true": 0.006
+    },
+    "crossed_500m": {
+      "share_true": 0.097
+    },
+    "crossed_1b": {
+      "share_true": 0.074
+    },
+    "crossed_5b": {
+      "share_true": 0.0
+    },
+    "fund_launched": {
+      "share_true": 0.013
+    },
+    "bank_affiliate": {
+      "share_true": 0.028
+    },
+    "seat_growth": {
+      "share_true": 0.198
+    },
+    "low_discretion": {
+      "share_true": 0.06
+    },
+    "commissions": {
+      "share_true": 0.033
+    },
+    "bd_linked": {
+      "share_true": 0.152
+    }
+  },
+  "sensitivity": [
+    {
+      "factor": "growth",
+      "delta": 5,
+      "top_n_kept": 48
+    },
+    {
+      "factor": "growth",
+      "delta": -5,
+      "top_n_kept": 48
+    },
+    {
+      "factor": "hnw_mix",
+      "delta": 5,
+      "top_n_kept": 46
+    },
+    {
+      "factor": "hnw_mix",
+      "delta": -5,
+      "top_n_kept": 47
+    },
+    {
+      "factor": "scale",
+      "delta": 5,
+      "top_n_kept": 49
+    },
+    {
+      "factor": "scale",
+      "delta": -5,
+      "top_n_kept": 49
+    },
+    {
+      "factor": "seats",
+      "delta": 5,
+      "top_n_kept": 49
+    },
+    {
+      "factor": "seats",
+      "delta": -5,
+      "top_n_kept": 48
+    },
+    {
+      "factor": "offices",
+      "delta": 5,
+      "top_n_kept": 47
+    },
+    {
+      "factor": "offices",
+      "delta": -5,
+      "top_n_kept": 46
+    },
+    {
+      "factor": "platform_sponsor",
+      "delta": 5,
+      "top_n_kept": 44
+    },
+    {
+      "factor": "platform_sponsor",
+      "delta": -5,
+      "top_n_kept": 41
+    }
+  ],
+  "suppressed": [
+    {
+      "crd": 138938,
+      "name": "DAI WEALTH, LLC"
+    }
+  ],
+  "growth_fill_rule": "new registrants get percentile 0.5 and the NEW_REGISTRANT flag; prior RAUM <= 0 is treated as missing",
+  "outputs": {
+    "scored_universe": "outputs/am_distribution/scored_universe.csv",
+    "top50": "outputs/am_distribution/top50.csv",
+    "top25": "outputs/am_distribution/top25.csv",
+    "suppression": "outputs/am_distribution/suppression.csv"
+  },
+  "usage": null
+}

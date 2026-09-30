@@ -6,7 +6,7 @@ import yaml
 
 from radar.score import flag, linear, log_ramp, percentile, score
 
-CFG = yaml.safe_load(Path("config/icp_aqua.yaml").read_text())
+CFG = yaml.safe_load(Path("config/icp_alts_platform.yaml").read_text())
 
 
 def test_points_sum_to_100():
