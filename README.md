@@ -1,8 +1,12 @@
 # RIA Signal Radar
 
+[![CI](https://github.com/jackdavey-23/ria-signal-radar/actions/workflows/ci.yml/badge.svg)](https://github.com/jackdavey-23/ria-signal-radar/actions/workflows/ci.yml) [![Report](https://img.shields.io/badge/live-report%20page-2f5d8a)](https://jackdavey-23.github.io/ria-signal-radar/)
+
 > **Drafts only. Nothing is ever sent.** `DEMO_MODE` is hard-coded, no module may import an email library (a test enforces it), no LinkedIn, no BrokerCheck, no vendor logos or claimed affiliation.
 
 Ranks the SEC-registered investment advisers in the monthly Form ADV roster against an alternatives platform's ideal customer profile, explains every score with the filing fields behind it, and exports a suppressed, CRM-shaped list. The ICP is a lookalike of one vendor's four public advisory customers (trade press, 2026-09-09). Built as a portfolio piece for GTM engineering work.
+
+[![RIA Signal Radar report page](docs/report.png)](https://jackdavey-23.github.io/ria-signal-radar/)
 
 Every number on this page is copied from [`outputs/run_log.json`](outputs/run_log.json) for run **`20260930T052002-96162ad`** (config `d0f4e529eb3d`, frozen before the first run). Reproduce it with `uv run radar run --sensitivity` after `uv run python scripts/fetch_sec.py`.
 
