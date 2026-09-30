@@ -1,0 +1,46 @@
+# Human review of the scored list, by CRD. Form ADV has no field for who owns a firm, so these are
+# judgments the data cannot make. Applied by scripts/build_vendor_sheet.py and shown on the report page.
+# decision: remove | restore (override an automatic bank_affiliate removal) | keep (annotate, or admit a
+# firm ranked beyond reviewed_through_rank into the backfill). Never matched by name substring.
+# Review method (2026-09-30): five reviewers, each firm checked against its own website, ADV/IAPD and
+# news; sources per firm in the private review doc. Summary of blind spots in docs/decisions/ADR-005.
+reviewed_on: "2026-09-30"
+reviewed_through_rank: 50
+entries:
+  # --- removed: ownership the roster cannot see ---
+  - {crd: 153184, name: "Stratos Wealth Partners", decision: remove, category: acquired, note: "SEI majority-owned since Dec 2025; SEI runs a competing alts marketplace (seic.com newsroom 2025-12-03)"}
+  - {crd: 46173, name: "Park Avenue Securities", decision: remove, category: insurer_captive, note: "Wholly owned subsidiary of Guardian Life (firm site, 2026-09-30); the bank flag cannot see insurers"}
+  - {crd: 171070, name: "Osaic Advisory Services", decision: remove, category: aggregator_subsidiary, note: "Corporate RIA of Osaic (Reverence Capital); an enterprise buyer, not a standalone firm (ADV Schedule A)"}
+  - {crd: 155193, name: "Kestra Private Wealth Services", decision: remove, category: aggregator_subsidiary, note: "Kestra Holdings channel, Stone Point majority; ~$111B parent (ADV Schedule A)"}
+  - {crd: 10111, name: "Primerica Advisors", decision: remove, category: insurer_captive, note: "Advisory DBA of PFS Investments; middle-income captive sales force, 21% HNW"}
+  - {crd: 8361, name: "A.G.P. / Alliance Global Partners", decision: remove, category: investment_bank, note: "Small-cap investment bank (IPOs, PIPEs) with a retail arm (allianceg.com, 2026-09-30)"}
+  - {crd: 1588, name: "Davenport & Company", decision: remove, category: regional_bd, note: "Employee-owned regional full-service brokerage with capital markets and public finance"}
+  - {crd: 3496, name: "Stephens", decision: remove, category: regional_bd, note: "Stephens-family investment bank; the regional-BD archetype"}
+  - {crd: 281554, name: "Intrua Financial", decision: remove, category: duplicate_parent, note: "100% owned by Larson Financial Holdings since 07/2023 (ADV Schedule B); Larson is already on the list"}
+  - {crd: 307771, name: "NewEdge Wealth", decision: remove, category: wrong_tier, note: "PE-controlled UHNW employee channel of an $80B+ group; belongs in an enterprise bucket"}
+  - {crd: 265, name: "ESI Financial Advisors", decision: remove, category: insurer_captive, note: "National Life Group member company (nationallife.com, 2026-09-30); backfill zone"}
+  - {crd: 877, name: "Wedbush Securities", decision: remove, category: regional_bd, note: "Regional full-service brokerage; backfill zone"}
+  - {crd: 317245, name: "Ameritas Advisory Services", decision: remove, category: insurer_captive, note: "Ameritas affiliate (ameritas.com, 2026-09-30); backfill zone"}
+  # --- restored: the automatic flag was a false positive ---
+  - {crd: 134086, name: "Level Four Advisory Services", decision: restore, category: false_positive_bank_flag, note: "The 7A(8) related person is a national trust bank; owners are Level Four Group, CRI Advisors and a Centerbridge aggregator (ADV Schedule A/B, 2026-09-30)"}
+  # --- admitted from the backfill zone after review ---
+  - {crd: 130814, name: "NFSG Corporation", decision: keep, category: independent_hybrid_network, display_name: "Newbridge Financial Services Group (NFSG)", note: "Founder-owned Newbridge Financial holding: Newbridge Securities (IBD) + NFSG (RIA), Boca Raton (nfsgwealth.com, 2026-09-30)"}
+  - {crd: 119682, name: "BFC Planning", decision: keep, category: independent_hybrid_network, display_name: "Berthel Fisher (BFC Planning)", note: "Founder-owned Berthel Fisher holding (Tom Berthel), IBD + RIA, Cedar Rapids (berthel.com, 2026-09-30); the 2020 Cetera talks never closed"}
+  # --- kept, with the brand or ownership note a buyer would expect ---
+  - {crd: 168267, name: "Independent Advisor Alliance", decision: keep, category: independent_hybrid_network, display_name: "Visionary Square (fka Independent Advisor Alliance)", note: "Renamed March 2026 (visionarysquare.com, 2026-09-30); Russo-owned; about 2x the customer band"}
+  - {crd: 162200, name: "Capital Analysts", decision: keep, category: independent_hybrid_network, display_name: "Lincoln Investment (Capital Analysts)", note: "Lincoln Investment's RIA; sibling Lincoln Investment Planning (CRD 519) files separately"}
+  - {crd: 168012, name: "IFG Advisory", decision: keep, category: independent_hybrid_network, display_name: "Integrated Financial Group (IFG Advisory, Atlanta)", note: "Member-owned planner consortium on LPL; not the customer Independent Financial Group"}
+  - {crd: 167658, name: "Mutual Advisors", decision: keep, category: independent_hybrid_network, display_name: "Mutual Group (Mutual Advisors)", note: "Family-owned 1982 IBD's RIA, Omaha; not Mutual of Omaha"}
+  - {crd: 283087, name: "OneSeven", decision: keep, category: independent_hybrid_network, display_name: "OneSeven", note: "Founder-controlled, RIA-first"}
+  - {crd: 125112, name: "Independent Financial Partners", decision: keep, category: independent_hybrid_network, note: "Hamm-family hybrid that owns its own BD; already has an alts lineup; not the customer Independent Financial Group"}
+  - {crd: 10740, name: "Prospera Financial Services", decision: keep, category: independent_hybrid_network, note: "Executive-owned 1982 IBD+RIA; the most on-profile name on the list"}
+  - {crd: 44181, name: "Nations Financial Group", decision: keep, category: independent_hybrid_network, note: "Founder-owned IBD+RIA, 71% HNW; cleanest DAI/Arkadios-scale lookalike"}
+  - {crd: 7995, name: "Ausdal Financial Partners", decision: keep, category: independent_hybrid_network, note: "Advisor- and employee-owned IBD+RIA since 1979; the +75% is a real $1B OSJ pickup from Osaic (Feb 2025)"}
+  - {crd: 142457, name: "Merit Financial Advisors", decision: keep, category: independent_hybrid_network, note: "Stretch-up account: about 2x the customer band; Constellation minority stake July 2025"}
+  - {crd: 299322, name: "Summit Financial", decision: keep, category: independent_hybrid_network, note: "Stretch-up account: about 2x the band; runs an alternatives-held-directly program; Merchant majority stake Jan 2025"}
+  - {crd: 171976, name: "Wealthcare Advisory Partners", decision: keep, category: independent_hybrid_network, note: "Sammons-owned since July 2025"}
+  - {crd: 139627, name: "Integrity Alliance", decision: keep, category: other, note: "fka Brokers International Financial Services (renamed Oct 2024); Integrity Marketing Group-owned; insurance-centric"}
+  - {crd: 288792, name: "Kingswood Wealth Advisors", decision: keep, category: independent_hybrid_network, note: "UK PE parent; brand discontinued"}
+  - {crd: 19258, name: "Harbour Investments", decision: keep, category: independent_hybrid_network, note: "27% HNW share; deprioritize"}
+  - {crd: 128545, name: "Cary Street Partners", decision: keep, category: other, note: "CIVC-owned; already runs its own private-markets fund"}
+  - {crd: 158819, name: "CoreCap Advisors", decision: keep, category: other, note: "Simplicity Group-owned since March 2024; insurance-led"}

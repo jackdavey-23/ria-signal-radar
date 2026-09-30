@@ -106,8 +106,14 @@ Each weight moved ±5 points; how many of the baseline top 50 stay in the top 50
 Flags appear in the why string and the exports. They are never scored, never gated, and never used in an opener. Share of the universe: `item11` 31%, `new_registrant` 1%, `stale_filing` 3%, `crossed_500m` 6%, `crossed_1b` 6%, `crossed_5b` 4%, `fund_launched` 1%, `bank_affiliate` 13%, `seat_growth` 12%, `low_discretion` 13%, `commissions` 12%, `manager_selection` 76%.
 
 - **`item11`** covers the affiliated broker-dealer's regulatory history as well as the adviser's, which is why it is common in a BD-linked universe. Two of the four seed customers carry it. A flag for a human, never a hook.
-- **`bank_affiliate`** (7A(8)) marks captive bank and insurer arms that surface in the top 50; those are enterprise procurement, not a founder-to-founder sale, and are removed by hand from any list a vendor sees.
+- **`bank_affiliate`** (7A(8)) marks bank-owned arms, which drop automatically from any list a vendor sees. It does not catch insurer captives or aggregator subsidiaries; the human review layer below does.
 - **Suppression** ([`config/suppression.yaml`](config/suppression.yaml)) removes the vendor's public customers and their affiliates by CRD only, never by name substring, before `top25.csv` is written. Every export row carries the `run_id`.
+
+## Ownership is invisible to Form ADV: the human review layer
+
+The roster has no field for who owns a firm. A name-by-name review of the top 50 (each firm's own site, Form ADV and news, 2026-09-30) found the shape right, with 20 of the 32 non-bank names being independent hybrid networks like the vendor's customers, and four blind spots the data cannot see: insurer captives the bank flag misses (Guardian's Park Avenue Securities, Primerica), aggregator subsidiaries scored as standalone firms (Osaic Advisory, Kestra Private Wealth), regional brokerages and an investment bank (Davenport, Stephens, A.G.P.), and duplicate or wrong-tier entities (Intrua, owned by Larson; NewEdge Wealth). One automatic removal was a false positive (Level Four: its "bank" affiliate is a trust company). Several legal names are stale brands (Visionary Square, formerly Independent Advisor Alliance).
+
+Those judgments live in [`config/hand_review.yaml`](config/hand_review.yaml) as data (CRD, decision, category, dated note, display name): 13 removed, 1 restored, 19 annotated or admitted from the backfill. [`scripts/build_vendor_sheet.py`](scripts/build_vendor_sheet.py) applies them after the automatic bank-affiliate removal, and the report page shows the decision beside each of the 50. Firms beyond the reviewed rank enter the vendor sheet only after review. Planned config v2, not applied because it would reshuffle the frozen ranking: a staff ceiling near 1,000 (the customers have 40 to 624 staff; the captives have 1,400 to 4,000), a size ceiling nearer $15B, and a parent map by CRD ([ADR-005](docs/decisions/ADR-005-ownership-review-as-data.md)).
 
 ## Limitations
 

@@ -155,7 +155,12 @@ def report(args: argparse.Namespace) -> None:
     drafts = json.loads(drafts_path.read_text()) if drafts_path.exists() else []
     p2_path = args.out / "am_distribution" / "run_log.json"
     preset2 = json.loads(p2_path.read_text()) if p2_path.exists() else None
-    print(render_report(log, top, drafts, preset2, args.html))
+    review_path = ROOT / "config" / "hand_review.yaml"
+    review = None
+    if review_path.exists():
+        entries = (yaml.safe_load(review_path.read_text()) or {}).get("entries", [])
+        review = {int(e["crd"]): e for e in entries}
+    print(render_report(log, top, drafts, preset2, args.html, review))
 
 
 def main(argv: list[str] | None = None) -> None:

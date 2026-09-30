@@ -33,18 +33,37 @@ def _money(v: float) -> str:
     return f"${v / 1e9:.1f}B" if v >= 1e9 else f"${v / 1e6:.0f}M"
 
 
-def _row(r: pd.Series) -> str:
+def _review_cell(r: pd.Series, review: dict) -> str:
+    e = review.get(int(r["crd"]))
+    if e and e["decision"] == "remove":
+        return f"<span class=C>removed: {html.escape(e['category'].replace('_', ' '))}</span>"
+    if e and e["decision"] == "restore":
+        return "<span class=A>restored: bank flag false positive</span>"
+    if bool(r.get("bank_affiliate", False)):
+        return "<span class=C>removed: bank affiliate (automatic)</span>"
+    if e and e.get("display_name"):
+        return f"kept as {html.escape(e['display_name'])}"
+    return "kept" if e else ""
+
+
+def _row(r: pd.Series, review: dict | None = None) -> str:
     g = "" if pd.isna(r["growth"]) else f"{r['growth']:+.0%}"
+    review_td = f"<td>{_review_cell(r, review)}</td>" if review is not None else ""
     return (
         f"<tr><td class=n>{int(r['rank'])}</td><td>{html.escape(str(r['name']))}</td><td>{html.escape(str(r['state']))}</td>"
         f"<td class=n data-v='{r['raum']}'>{_money(float(r['raum']))}</td><td class=n data-v='{r['growth'] if not pd.isna(r['growth']) else -9}'>{g}</td>"
         f"<td class=n>{int(r['seats'])}</td><td class=n>{int(r['offices'])}</td><td class=n>{r['hnw_share']:.0%}</td>"
-        f"<td class=n>{r['score']}</td><td class='tier {r['tier']}'>{r['tier']}</td><td>{html.escape(str(r['why']))}</td></tr>"
+        f"<td class=n>{r['score']}</td><td class='tier {r['tier']}'>{r['tier']}</td><td>{html.escape(str(r['why']))}</td>{review_td}</tr>"
     )
 
 
 def render_report(
-    run_log: dict, top: pd.DataFrame, drafts: list[dict], preset2: dict | None, out: Path
+    run_log: dict,
+    top: pd.DataFrame,
+    drafts: list[dict],
+    preset2: dict | None,
+    out: Path,
+    review: dict | None = None,
 ) -> Path:
     rid, h = run_log["run_id"], run_log["config"]["hash"]
     tiers = run_log["tier_counts"]
@@ -60,7 +79,14 @@ def render_report(
         f"<tr><td>{r['factor']}</td><td class=n>{r['delta']:+d}</td><td class=n>{r['top_n_kept']} / 50</td></tr>"
         for r in run_log["sensitivity"]
     )
-    rows = "".join(_row(r) for _, r in top.iterrows())
+    rows = "".join(_row(r, review) for _, r in top.iterrows())
+    review_th = "<th>Human review</th>" if review is not None else ""
+    n_removed = sum(1 for e in (review or {}).values() if e["decision"] == "remove")
+    review_note = (
+        f"<p class=muted>Form ADV has no field for who owns a firm. A name-by-name review of the top 50 (each firm's site, ADV and news, 2026-09-30) is applied as versioned data in <code>config/hand_review.yaml</code>: bank-affiliated firms drop automatically, {n_removed} more were removed by hand (insurer captives, aggregator subsidiaries, regional brokerages, one duplicate parent), one false removal was restored. The vendor sheet is what remains.</p>"
+        if review is not None
+        else ""
+    )
     if drafts:
         cards = "".join(
             f"<div class=card><b>{html.escape(d['name'])}</b> <span class=muted>CRD {d['crd']} · {'validated' if d['valid'] else 'REJECTED: ' + ', '.join(d['rejected_numbers'])}</span>"
@@ -88,8 +114,8 @@ def render_report(
 <div class=kpis><div class=kpi><b>{run_log["funnel"][0]["remaining"]:,}</b><span class=muted>firms in the roster</span></div><div class=kpi><b>{run_log["universe_size"]}</b><span class=muted>in the ICP universe</span></div>
 <div class=kpi><b class=A>{tiers.get("A", 0)}</b><span class=muted>tier A</span></div><div class=kpi><b class=B>{tiers.get("B", 0)}</b><span class=muted>tier B</span></div><div class=kpi><b class=C>{tiers.get("C", 0)}</b><span class=muted>tier C</span></div></div>
 <h2>Funnel</h2><div class=wrap><table><thead><tr><th>Gate</th><th>Rule</th><th class=n>Remaining</th></tr></thead><tbody>{funnel}</tbody></table></div>
-<h2>Top 50 (after suppression)</h2><p class=muted>Click a header to sort. The why string names the three biggest factors and any flags.</p>
-<div class=wrap><table class=sortable><thead><tr><th class=n>#</th><th>Firm</th><th>State</th><th class=n>RAUM</th><th class=n>Growth</th><th class=n>Seats</th><th class=n>Offices</th><th class=n>HNW</th><th class=n>Score</th><th>Tier</th><th>Why</th></tr></thead><tbody>{rows}</tbody></table></div>
+<h2>Top 50 (after suppression)</h2><p class=muted>Click a header to sort. The why string names the three biggest factors and any flags.</p>{review_note}
+<div class=wrap><table class=sortable><thead><tr><th class=n>#</th><th>Firm</th><th>State</th><th class=n>RAUM</th><th class=n>Growth</th><th class=n>Seats</th><th class=n>Offices</th><th class=n>HNW</th><th class=n>Score</th><th>Tier</th><th>Why</th>{review_th}</tr></thead><tbody>{rows}</tbody></table></div>
 <h2>Sanity check, not a backtest</h2><p>The vendor's four public customers, ranked by the frozen config (n = 4; they shaped the gates and weights):</p><ul>{seeds}</ul>
 <h2>Sensitivity</h2><p class=muted>Each weight moved ±5 points; how many of the baseline top 50 remain.</p><div class=wrap><table><thead><tr><th>Factor</th><th class=n>Δ</th><th class=n>Top 50 kept</th></tr></thead><tbody>{sens}</tbody></table></div>
 <h2>Drafts</h2>{drafts_html}
