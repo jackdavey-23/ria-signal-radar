@@ -25,3 +25,13 @@ select = ["E", "F", "I", "UP", "B", "SIM", "N", "W"]
 pythonpath = ["src"]
 testpaths = ["tests"]
 addopts = "-q"
+
+[build-system]
+requires = ["uv_build>=0.8.0,<1.0.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "radar"
+
+[project.scripts]
+radar = "radar.cli:main"

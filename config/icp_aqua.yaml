@@ -79,7 +79,7 @@ factors:  # points must sum to 100; each row appears verbatim in the README
     points: 10
     column: raum
     transform: log_ramp
-    params: {lo: 250e6, hi: 5e9}
+    params: {lo: 250.0e6, hi: 5.0e9}  # write floats with a dot: PyYAML reads 250e6 as text
     hypothesis: "Platform minimums. A log ramp, not a bell: two seeds are $8.8B and $12.9B."
   - id: hnw_mix
     points: 10

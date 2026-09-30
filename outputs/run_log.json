@@ -1,0 +1,223 @@
+{
+  "run_id": "20260930T051810-cf0932f",
+  "generated_at": "2026-09-30T05:18:10+00:00",
+  "inputs": [
+    {
+      "file": "ia09012026-registered.csv",
+      "sha256": "cc3ef47c5368ed7a493ab45effe33dc6a018fb0b1601b8baeba0ce1bb617f0bf",
+      "rows": 17149,
+      "columns": 448
+    },
+    {
+      "file": "ia09022025.xlsx",
+      "sha256": "977d83fdd67acdc464d30d892fe1a839fae2d8d6a47661ecb7ec53bd0e7c312c",
+      "rows": 16359,
+      "columns": 448
+    }
+  ],
+  "config": {
+    "path": "config/icp_aqua.yaml",
+    "hash": "d0f4e529eb3d",
+    "alts_direction": "active"
+  },
+  "join": {
+    "matched": 15456,
+    "new_registrant": 1693
+  },
+  "funnel": [
+    {
+      "gate": "all",
+      "description": "rows in file",
+      "remaining": 17149
+    },
+    {
+      "gate": "us",
+      "description": "Main office in the United States",
+      "remaining": 14863
+    },
+    {
+      "gate": "bd_linked",
+      "description": "Broker-dealer linked: 6A(1) is a broker-dealer, 6A(2) is a registered representative, or 7A(1) has a broker-dealer related person",
+      "remaining": 2523
+    },
+    {
+      "gate": "real_network",
+      "description": "5B(2) registered representatives of a broker-dealer >= 5",
+      "remaining": 1323
+    },
+    {
+      "gate": "size",
+      "description": "5F(2)(c) regulatory assets under management between $250M and $25B",
+      "remaining": 787
+    },
+    {
+      "gate": "staff",
+      "description": "5A employees >= 10",
+      "remaining": 711
+    },
+    {
+      "gate": "wealth_clients",
+      "description": "5D(b)(1) high net worth clients > 0 and HNW share of RAUM (5D(b)(3) / 5F(2)(c)) >= 0.20",
+      "remaining": 392
+    },
+    {
+      "gate": "wealth_manager",
+      "description": "Individuals (5D(a)(3) + 5D(b)(3)) >= 50% of RAUM and pooled vehicles 5D(f)(3) < 50%",
+      "remaining": 359
+    }
+  ],
+  "universe_size": 359,
+  "tier_counts": {
+    "C": 256,
+    "B": 67,
+    "A": 36
+  },
+  "seed_ranks": [
+    {
+      "crd": 288863,
+      "name": "Arkadios Wealth Advisors",
+      "rank": 23,
+      "tier": "A",
+      "score": 77.3
+    },
+    {
+      "crd": 7717,
+      "name": "Independent Financial Group",
+      "rank": 50,
+      "tier": "B",
+      "score": 71.4
+    },
+    {
+      "crd": 140367,
+      "name": "Concorde Asset Management",
+      "rank": 93,
+      "tier": "B",
+      "score": 61.5
+    },
+    {
+      "crd": 138938,
+      "name": "DAI Wealth",
+      "rank": 151,
+      "tier": "C",
+      "score": 53.1
+    }
+  ],
+  "sensitivity": [
+    {
+      "factor": "growth",
+      "delta": 5,
+      "top_n_kept": 48
+    },
+    {
+      "factor": "growth",
+      "delta": -5,
+      "top_n_kept": 48
+    },
+    {
+      "factor": "seats",
+      "delta": 5,
+      "top_n_kept": 50
+    },
+    {
+      "factor": "seats",
+      "delta": -5,
+      "top_n_kept": 49
+    },
+    {
+      "factor": "offices",
+      "delta": 5,
+      "top_n_kept": 50
+    },
+    {
+      "factor": "offices",
+      "delta": -5,
+      "top_n_kept": 49
+    },
+    {
+      "factor": "hybrid_depth",
+      "delta": 5,
+      "top_n_kept": 50
+    },
+    {
+      "factor": "hybrid_depth",
+      "delta": -5,
+      "top_n_kept": 48
+    },
+    {
+      "factor": "platform_sponsor",
+      "delta": 5,
+      "top_n_kept": 46
+    },
+    {
+      "factor": "platform_sponsor",
+      "delta": -5,
+      "top_n_kept": 49
+    },
+    {
+      "factor": "alts_re_lp",
+      "delta": 5,
+      "top_n_kept": 49
+    },
+    {
+      "factor": "alts_re_lp",
+      "delta": -5,
+      "top_n_kept": 47
+    },
+    {
+      "factor": "alts_pooled",
+      "delta": 5,
+      "top_n_kept": 47
+    },
+    {
+      "factor": "alts_pooled",
+      "delta": -5,
+      "top_n_kept": 45
+    },
+    {
+      "factor": "scale",
+      "delta": 5,
+      "top_n_kept": 50
+    },
+    {
+      "factor": "scale",
+      "delta": -5,
+      "top_n_kept": 49
+    },
+    {
+      "factor": "hnw_mix",
+      "delta": 5,
+      "top_n_kept": 48
+    },
+    {
+      "factor": "hnw_mix",
+      "delta": -5,
+      "top_n_kept": 47
+    }
+  ],
+  "suppressed": [
+    {
+      "crd": 288863,
+      "name": "ARKADIOS WEALTH ADVISORS"
+    },
+    {
+      "crd": 7717,
+      "name": "INDEPENDENT FINANCIAL GROUP, LLC"
+    },
+    {
+      "crd": 140367,
+      "name": "CONCORDE ASSET MANAGEMENT, LLC"
+    },
+    {
+      "crd": 138938,
+      "name": "DAI WEALTH, LLC"
+    }
+  ],
+  "growth_fill_rule": "new registrants get percentile 0.5 and the NEW_REGISTRANT flag; prior RAUM <= 0 is treated as missing",
+  "outputs": {
+    "scored_universe": "outputs/scored_universe.csv",
+    "top50": "outputs/top50.csv",
+    "top25_aqua": "outputs/top25_aqua.csv",
+    "suppression": "outputs/suppression.csv"
+  },
+  "usage": null
+}

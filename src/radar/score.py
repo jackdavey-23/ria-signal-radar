@@ -12,10 +12,12 @@ COUNT_COLUMNS = {"seats", "offices", "staff", "bd_reps", "adv_staff"}
 
 
 def linear(s: pd.Series, lo: float, hi: float) -> pd.Series:
+    lo, hi = float(lo), float(hi)  # PyYAML reads 250e6 as a string
     return ((s - lo) / (hi - lo)).clip(0, 1).fillna(0.0)
 
 
 def log_ramp(s: pd.Series, lo: float, hi: float) -> pd.Series:
+    lo, hi = float(lo), float(hi)
     x = s.where(s > 0)
     return ((np.log(x) - np.log(lo)) / (np.log(hi) - np.log(lo))).clip(0, 1).fillna(0.0)
 
