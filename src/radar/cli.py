@@ -25,6 +25,28 @@ def _rel(p: Path) -> str:
         return str(p)
 
 
+def base_rates(universe, cfg: dict) -> dict:
+    """How common each factor input and flag is in the gated universe (for the README table)."""
+    out = {}
+    for f in cfg["factors"]:
+        s = universe[f["column"]]
+        if s.dtype == bool:
+            out[f["id"]] = {"share_true": round(float(s.mean()), 3)}
+        else:
+            q = s.quantile([0.25, 0.5, 0.75])
+            out[f["id"]] = {
+                "p25": float(q.iloc[0]),
+                "median": float(q.iloc[1]),
+                "p75": float(q.iloc[2]),
+            }
+    for name in cfg["flags"]:
+        if name in universe:
+            out[name] = {
+                "share_true": round(float(universe[name].fillna(False).astype(bool).mean()), 3)
+            }
+    return out
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="radar")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -71,6 +93,7 @@ def run(args: argparse.Namespace) -> dict:
         "universe_size": int(len(scored)),
         "tier_counts": {k: int(v) for k, v in scored["tier"].value_counts().items()},
         "seed_ranks": seeds,
+        "base_rates": base_rates(kept, cfg),
         "sensitivity": sens,
         "suppressed": [
             {"crd": int(c), "name": n}

@@ -68,5 +68,5 @@ def test_alts_direction_gap_flips_alts_points():
     cfg_gap = dict(CFG, alts_direction="gap")
     gap = score(active.drop(columns=[c for c in active.columns if c.startswith("pts_")]), cfg_gap)
     a = active.set_index("crd")["pts_alts_pooled"]
-    g = gap.set_index("crd")["pts_alts_pooled"]
+    g = gap.set_index("crd")["pts_alts_pooled"].reindex(a.index)
     assert ((a > 0) == (g == 0)).all()
