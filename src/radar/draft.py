@@ -35,7 +35,8 @@ SYSTEM = (
     "vendor's outreach associate to a registered investment adviser, using only the facts "
     "provided. Never mention regulatory or disciplinary disclosures, never invent or round a "
     "number beyond what is given, never name the vendor, no flattery. Return JSON with the "
-    "opener and the list of factual claims you used, each claim quoting the figure exactly as given."
+    "opener and the list of factual claims you used, each claim quoting the figure exactly "
+    "as given."
 )
 SCHEMA = {
     "type": "object",
