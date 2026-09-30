@@ -8,7 +8,7 @@ Ranks the SEC-registered investment advisers in the monthly Form ADV roster agai
 
 [![RIA Signal Radar report page](docs/report.png)](https://jackdavey-23.github.io/ria-signal-radar/)
 
-Every number on this page is copied from [`outputs/run_log.json`](outputs/run_log.json) for run **`20260930T052002-96162ad`** (config `d0f4e529eb3d`, frozen before the first run). Reproduce it with `uv run radar run --sensitivity` after `uv run python scripts/fetch_sec.py`.
+Every number on this page is copied from [`outputs/run_log.json`](outputs/run_log.json) for run **`20260930T053624-d64ec98`** (config `4d58b197656f`; the weights were frozen at tag v0 and have not changed, the hash moved once when the file was renamed vendor-neutral). Reproduce it with `uv run radar run --sensitivity` after `uv run python scripts/fetch_sec.py`.
 
 ## Funnel
 
@@ -128,7 +128,7 @@ Public SEC data only, at the firm level. Requests to sec.gov declare a User-Agen
 
 ## Second preset: asset-manager distribution
 
-Same engine, different buyer. [`config/icp_am_distribution.yaml`](config/icp_am_distribution.yaml) asks which RIAs an asset manager's RIA-channel wholesaler should call first: $250M–$5B, HNW-heavy, and already selecting outside managers (5G(7)). Run `20260930T053209-645da65`: funnel 17,149 → 14,863 → 8,248 → 6,887 → 3,409 → 3,377 → 1,740; tiers A 37 · B 187 · C 1516 (1740 firms). No public customer list exists for this buyer, so no sanity-check claim is made for it.
+Same engine, different buyer. [`config/icp_am_distribution.yaml`](config/icp_am_distribution.yaml) asks which RIAs an asset manager's RIA-channel wholesaler should call first: $250M–$5B, HNW-heavy, and already selecting outside managers (5G(7)). Run `20260930T053624-d64ec98`: funnel 17,149 → 14,863 → 8,248 → 6,887 → 3,409 → 3,377 → 1,740; tiers A 37 · B 187 · C 1516 (1740 firms). No public customer list exists for this buyer, so no sanity-check claim is made for it.
 
 | Gate | Rule |
 |---|---|
