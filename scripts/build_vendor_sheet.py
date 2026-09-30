@@ -90,9 +90,8 @@ def main() -> None:
     path = ROOT / "outputs" / "vendor_sheet.csv"
     out.to_csv(path, index=False)
     removed = sum(1 for e in entries.values() if e["decision"] == "remove")
-    print(
-        f"{len(out)} rows -> {path.name}; hand-removed {removed}; bank-affiliated dropped unless restored"
-    )
+    print(f"{len(out)} rows -> {path.name}; hand-removed {removed}")
+    print("bank-affiliated rows dropped unless restored by hand review")
 
 
 if __name__ == "__main__":
