@@ -1,0 +1,44 @@
+# Field dictionary: the only place a roster column is named. `wording` is copied from Form ADV
+# Part 1A (SEC 1707, 07-24). `type` drives parsing in src/radar/ingest.py:
+#   money = dollar string like "   434,165,916.00" (".00" means zero)   count = integer
+#   flag = Y/N   date = date string   text = as-is
+# Gotchas that cost hours if you do not know them:
+#   - The Sep 2026 CSV is latin-1, not UTF-8.
+#   - Money fields are comma-formatted strings; counts are plain integers.
+#   - The Item 11 column header is the integer 11 in the XLSX and the string "11" in the CSV.
+#   - 5B(1) is advisory-function employees, NOT investment adviser representatives (that is 5B(3)).
+#   - Every 7A(x) describes a RELATED PERSON (affiliate); 6A(x) describes the firm itself.
+fields:
+  - {column: "Organization CRD#", name: crd, type: count, item: "1", wording: "Organization CRD number", gotcha: "join key across years"}
+  - {column: "Primary Business Name", name: name, type: text, item: "1.B", wording: "Name under which you primarily conduct your advisory business"}
+  - {column: "Main Office City", name: city, type: text, item: "1.F", wording: "Principal office and place of business: city"}
+  - {column: "Main Office State", name: state, type: text, item: "1.F", wording: "Principal office and place of business: state"}
+  - {column: "Main Office Country", name: country, type: text, item: "1.F", wording: "Principal office and place of business: country"}
+  - {column: "Website Address", name: website, type: text, item: "1.I", wording: "Website address", gotcha: "34.6% of values are social-media pages (LinkedIn, Facebook...); never use those as a company domain"}
+  - {column: "SEC Status Effective Date", name: sec_status_date, type: date, item: "roster", wording: "Effective date of the firm's current SEC registration status"}
+  - {column: "Latest ADV Filing Date", name: latest_filing_date, type: date, item: "roster", wording: "Date of the most recent Form ADV filing", gotcha: "Items 5, 6, 7 only change in the annual updating amendment (due within 90 days of fiscal year end), so 16,912 of 17,149 firms show a 2026 date and RAUM is fiscal-year-end data"}
+  - {column: "Total number of offices, other than your Principal Office and place of business", name: offices, type: count, item: "1.F(5)", wording: "Total number of offices, other than your principal office and place of business, at which you conduct investment advisory business"}
+  - {column: "5A", name: staff, type: count, item: "5.A", wording: "Approximately how many employees do you have? Include full- and part-time employees but do not include any clerical workers."}
+  - {column: "5B(1)", name: adv_staff, type: count, item: "5.B(1)", wording: "Approximately how many of the employees reported in 5.A. perform investment advisory functions (including research)?", gotcha: "not IARs; 5B(3) counts investment adviser representatives"}
+  - {column: "5B(2)", name: bd_reps, type: count, item: "5.B(2)", wording: "Approximately how many of the employees reported in 5.A. are registered representatives of a broker-dealer?"}
+  - {column: "5D(a)(1)", name: ind_clients, type: count, item: "5.D(a)(1)", wording: "Individuals (other than high net worth individuals): number of clients"}
+  - {column: "5D(a)(3)", name: ind_amt, type: money, item: "5.D(a)(3)", wording: "Individuals (other than high net worth individuals): amount of regulatory assets under management"}
+  - {column: "5D(b)(1)", name: hnw_clients, type: count, item: "5.D(b)(1)", wording: "High net worth individuals: number of clients"}
+  - {column: "5D(b)(3)", name: hnw_amt, type: money, item: "5.D(b)(3)", wording: "High net worth individuals: amount of regulatory assets under management", gotcha: "dollars, not a count; the 5D(x)(3) rows sum to 5F(2)(c) for 100% of firms (checked 2026-09-29). 'High net worth' is the rule 205-3 qualified-client test, not qualified purchaser"}
+  - {column: "5D(f)(3)", name: pooled_amt, type: money, item: "5.D(f)(3)", wording: "Pooled investment vehicles (other than investment companies and business development companies): amount of regulatory assets under management"}
+  - {column: "5E(5)", name: commissions, type: flag, item: "5.E(5)", wording: "You are compensated for your investment advisory services by: commissions"}
+  - {column: "5F(2)(a)", name: disc_amt, type: money, item: "5.F(2)(a)", wording: "Regulatory assets under management: discretionary amount"}
+  - {column: "5F(2)(c)", name: raum, type: money, item: "5.F(2)(c)", wording: "Regulatory assets under management: total amount"}
+  - {column: "5G(7)", name: manager_selection, type: flag, item: "5.G(7)", wording: "Advisory services you provide: selection of other advisers (including private fund managers)", gotcha: "Y for 76% of the ICP universe; a flag, not a factor"}
+  - {column: "5I(1)", name: wrap_participant, type: flag, item: "5.I(1)", wording: "Do you participate in a wrap fee program?"}
+  - {column: "5I(2)(a)", name: wrap_sponsor_amt, type: money, item: "5.I(2)(a)", wording: "Regulatory assets under management attributable to acting as sponsor to a wrap fee program"}
+  - {column: "5I(2)(c)", name: wrap_both_amt, type: money, item: "5.I(2)(c)", wording: "Regulatory assets under management attributable to acting as sponsor to and portfolio manager for the same wrap fee program"}
+  - {column: "6A(1)", name: is_bd, type: flag, item: "6.A(1)", wording: "You are actively engaged in business as a: broker-dealer (registered or unregistered)"}
+  - {column: "6A(2)", name: is_rep, type: flag, item: "6.A(2)", wording: "You are actively engaged in business as a: registered representative of a broker-dealer"}
+  - {column: "7A(1)", name: bd_affiliate, type: flag, item: "7.A(1)", wording: "You have a related person that is a: broker-dealer, municipal securities dealer, or government securities broker or dealer (registered or unregistered)"}
+  - {column: "7A(8)", name: bank_affiliate, type: flag, item: "7.A(8)", wording: "You have a related person that is a: banking or thrift institution"}
+  - {column: "7A(14)", name: re_broker, type: flag, item: "7.A(14)", wording: "You have a related person that is a: real estate broker or dealer"}
+  - {column: "7A(15)", name: lp_sponsor, type: flag, item: "7.A(15)", wording: "You have a related person that is a: sponsor or syndicator of limited partnerships (or equivalent), excluding pooled investment vehicles"}
+  - {column: "7A(16)", name: pooled_sponsor, type: flag, item: "7.A(16)", wording: "You have a related person that is a: sponsor, general partner, managing member (or equivalent) of pooled investment vehicles"}
+  - {column: "7B", name: private_fund, type: flag, item: "7.B", wording: "Are you an adviser to any private fund?", gotcha: "fund sponsorship, not whether clients hold alternatives"}
+  - {column: "11", name: item11, type: flag, item: "11", wording: "Item 11: Do any of the events below involve you or any of your supervised persons? (roster summary column)", gotcha: "Y for 31% of the ICP universe because it covers the affiliated broker-dealer's history; a flag for a human, never a hook"}
